@@ -126,6 +126,7 @@ function apply(s, b) {
         status: 'sent', stage: 0, stages, subs: ['', '', '', '', ''], paid: null, updatedTs: n, req: null, tl: [], amt });
       s.lastCode = c; return s;
     }
+          case 'read': { s.notes.forEach(x => { if (b.all || x.id === b.note) x.unread = false; }); return s; }
   }
   const p = find(s, b); if (!p) throw new Error('Project not found');
   const fn = first(p.client);
@@ -164,7 +165,7 @@ function apply(s, b) {
       if (b.dir === 'deliver') { p.status = 'delivered'; p.stage = 4; p.deliveredTs = n; p.subs[4] = 'Delivered'; p.tl.unshift({ k: 'stage', text: 'Marked as delivered', ts: n }); }
       p.updatedTs = n; return s;
     }
-    case 'read': { s.notes.forEach(x => { if (b.all || x.id === b.note) x.unread = false; }); return s; }
+
   }
   throw new Error('Unknown action');
 }
