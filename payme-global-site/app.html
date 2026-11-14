@@ -1,4 +1,8 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Designed invoices for student freelancers. Clients abroad pay in USD or USDT, straight to Cleva, and follow the work stage by stage."><meta property="og:title" content="PayMe Global"><meta property="og:description" content="Designed invoices for student freelancers. Clients abroad pay in USD or USDT, straight to Cleva, and follow the work stage by stage."><meta name="theme-color" content="#0A0A0A"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0F0F'/%3E%3Cpath fill='%23F2F1EC' d='M18 12h16a16 16 0 0 1 0 32h-8v2a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V17a5 5 0 0 1 5-5z'/%3E%3Ccircle fill='%23FF5B1F' cx='34' cy='28' r='7'/%3E%3C/svg%3E"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Designed invoices for freelancers across Africa. Clients abroad pay in USD or USDT, straight to your account, and follow the work stage by stage."><meta property="og:title" content="PayMe Global"><meta property="og:description" content="Designed invoices for freelancers across Africa. Clients abroad pay in USD or USDT, straight to your account, and follow the work stage by stage."><meta name="theme-color" content="#0A0A0A"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0F0F'/%3E%3Cpath fill='%23F2F1EC' d='M18 12h16a16 16 0 0 1 0 32h-8v2a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V17a5 5 0 0 1 5-5z'/%3E%3Ccircle fill='%23FF5B1F' cx='34' cy='28' r='7'/%3E%3C/svg%3E"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+@media (min-width:1024px){body{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}}
+.mtop{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.mtop.nav-hid{transform:translateY(calc(-100% - 24px))}
+</style></head><body>
 <title>PayMe Freelancer App</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +43,7 @@ input,textarea,select{font-size:max(16px,1em)}
 .btn.sm{height:36px;font-size:13.5px;padding:0 13px;border-radius:11px}
 .btn svg{width:16px;height:16px}
 .btn[disabled]{opacity:.45;cursor:default}
-.av{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:12px;font-weight:600;background:var(--surface);color:var(--ink2);flex:none;object-fit:cover}
+.av{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:12px;font-weight:600;background:var(--surface);color:var(--ink2);flex:none;object-fit:cover}img.av{outline:1px solid var(--line);outline-offset:-1px}
 .card{background:var(--raised);border:1px solid var(--line);border-radius:24px}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;border-radius:999px;padding:4px 10px;white-space:nowrap;background:var(--surface);color:var(--ink2)}
 .chip i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
@@ -48,7 +52,7 @@ input,textarea,select{font-size:max(16px,1em)}
 .chip.progress{background:var(--ink);color:var(--bg)}
 .chip.review{background:var(--ultra-bg);color:var(--ultra-ink)}
 .chip.delivered,.chip.paid{background:var(--mint-bg);color:var(--mint-ink)}
-.badge{min-width:20px;height:20px;border-radius:999px;background:var(--signal);color:#0F0F0F;font-size:11px;font-weight:600;display:inline-grid;place-items:center;padding:0 6px;font-family:var(--mono)}
+.badge{min-width:20px;height:20px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:11px;font-weight:600;display:inline-grid;place-items:center;padding:0 6px;font-family:var(--mono)}
 
 /* shell */
 .app{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:236px minmax(0,1fr);gap:24px;align-items:start}
@@ -80,12 +84,12 @@ main{min-width:0;padding-top:6px}
 .ph .acts{display:flex;gap:8px;flex-wrap:wrap}
 
 /* attention: open requests (the one signal-coloured thing on the dashboard) */
-.req{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--sig-bg);border:1.5px solid var(--signal);border-radius:22px;padding:16px 16px 16px 18px}
-.req .av{width:44px;height:44px;background:var(--raised);color:var(--ink)}
+.req{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--raised);border:1px solid var(--line);box-shadow:0 1px 2px rgba(15,15,15,.04),0 12px 32px -20px rgba(15,15,15,.18);border-radius:22px;padding:16px 16px 16px 18px}
+.req .av{width:44px;height:44px;background:var(--surface);color:var(--ink)}
 .req b{display:block;font-weight:600;letter-spacing:-.02em;font-size:16px}
 .req q{display:block;font-size:15px;margin-top:2px;quotes:"“" "”"}
-.req small{display:block;font-size:12.5px;color:var(--sig-ink);margin-top:4px}
-.req .more{grid-column:1/-1;font-size:12.5px;color:var(--ink2);border-top:1px solid color-mix(in srgb,var(--signal) 30%,transparent);padding-top:10px;margin-top:2px}
+.req small{display:block;font-size:12.5px;color:var(--ink2);margin-top:4px}.req b::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--signal);margin-right:8px;vertical-align:2px;box-shadow:0 0 0 4px color-mix(in srgb,var(--signal) 14%,transparent)}
+.req .more{grid-column:1/-1;font-size:12.5px;color:var(--ink2);border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
 .allclear{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink2);background:var(--raised);border:1px solid var(--line);border-radius:18px;padding:12px 16px}
 .allclear i{width:8px;height:8px;border-radius:50%;background:var(--mint)}
 
@@ -123,7 +127,7 @@ main{min-width:0;padding-top:6px}
 .bars{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
 .bars i{height:4px;border-radius:2px;background:var(--line)}
 .bars i.on{background:var(--ink)}
-.prow .flag{width:8px;height:8px;border-radius:50%;background:var(--signal);display:inline-block;margin-left:6px;vertical-align:middle}
+.prow .flag{width:8px;height:8px;border-radius:50%;background:var(--ink);display:inline-block;margin-left:6px;vertical-align:middle}
 .empty{padding:40px 24px;text-align:center;display:grid;justify-items:center;gap:10px}
 .vig{width:200px;max-width:100%;margin-bottom:4px}.vig.sm{width:120px}.vig svg{display:block;width:100%;height:auto}
 .vig .tk{animation:feed 3.4s cubic-bezier(.4,0,.2,1) infinite}
@@ -146,13 +150,13 @@ main{min-width:0;padding-top:6px}
 .pad{padding:20px}
 .cardh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}
 .cardh h3{margin:0;font-size:18px;font-weight:500;letter-spacing:-.035em}
-.preq{border:1.5px solid var(--signal);background:var(--sig-bg);border-radius:24px;padding:18px 18px 4px}
+.preq{border:1px solid var(--line);background:var(--raised);border-radius:24px;padding:18px 18px 4px}
 .preq .top{display:flex;gap:12px;align-items:flex-start}
 .preq .top .av{background:var(--raised);color:var(--ink)}
-.preq b{font-weight:600}.preq .when{font-size:12.5px;color:var(--sig-ink)}
+.preq b{font-weight:600}.preq .when{font-size:12.5px;color:var(--ink2)}.preq .when::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);margin-right:7px;vertical-align:1px}
 .preq blockquote{margin:10px 0 0;font-size:18px;letter-spacing:-.02em;line-height:1.3}
 .preq .note{margin-top:6px;color:var(--ink2);font-size:14px}
-.preq .clock{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink2);border-top:1px solid color-mix(in srgb,var(--signal) 30%,transparent);margin-top:14px;padding:10px 0}
+.preq .clock{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink2);border-top:1px solid var(--line);margin-top:14px;padding:10px 0}
 .compose{display:grid;gap:10px}
 .compose textarea{font:inherit;font-size:16px;color:var(--ink);width:100%;min-height:96px;border:1px solid var(--line);background:var(--field);border-radius:16px;padding:12px 14px;resize:vertical;line-height:1.45}
 .compose textarea:focus,.compose input:focus{outline:none;border-color:var(--ink)}
@@ -161,7 +165,7 @@ main{min-width:0;padding-top:6px}
 .crow label{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink2)}
 .crow input[type=checkbox]{width:18px;height:18px;accent-color:var(--ink);margin:0}
 .count{font-family:var(--mono);font-size:11px;color:var(--ink3)}
-.replying{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sig-ink);background:var(--sig-bg);border-radius:10px;padding:7px 10px}
+.replying{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink2);background:var(--surface);border-radius:10px;padding:7px 10px}
 .answered{display:flex;align-items:center;gap:10px;background:var(--mint-bg);color:var(--mint-ink);border-radius:18px;padding:12px 16px;font-size:14px}
 .answered svg{flex:none}
 .tl{list-style:none;margin:0;padding:0;display:grid}
@@ -170,7 +174,7 @@ main{min-width:0;padding-top:6px}
 .tl .ic{width:32px;height:32px;border-radius:11px;display:grid;place-items:center;background:var(--surface);color:var(--ink2);font-size:11px;font-weight:600;overflow:hidden}
 .tl .ic img{width:100%;height:100%;object-fit:cover}
 .tl .ic.pay{background:var(--mint-bg);color:var(--mint-ink)}
-.tl .ic.ask{background:var(--sig-bg);color:var(--sig-ink)}
+.tl .ic.ask{background:var(--surface);color:var(--ink)}
 .tl .meta{font-size:12px;color:var(--ink3);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .tl .meta b{color:var(--ink);font-weight:600;font-size:13px}
 .tl .body{font-size:14.5px;margin-top:2px}
@@ -215,13 +219,13 @@ main{min-width:0;padding-top:6px}
 .nrow .ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--surface);color:var(--ink2)}
 .nrow .ic svg{width:18px;height:18px}
 .nrow .ic.pay{background:var(--mint-bg);color:var(--mint-ink)}
-.nrow .ic.ask{background:var(--sig-bg);color:var(--sig-ink)}
+.nrow .ic.ask{background:var(--surface);color:var(--ink)}
 .nrow .tx{font-size:14.5px;line-height:1.35}
 .nrow .tx b{font-weight:600}
 .nrow:not(.unread) .tx{color:var(--ink2)}
 .nrow .sb{font-size:13px;color:var(--ink3);margin-top:3px}
 .nrow .tm{font-size:12px;color:var(--ink3);white-space:nowrap;display:flex;align-items:center;gap:8px}
-.nrow .tm i{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.nrow .tm i{width:8px;height:8px;border-radius:50%;background:var(--ink)}
 
 /* client states */
 .phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
@@ -280,7 +284,7 @@ main{min-width:0;padding-top:6px}
     <nav class="nav" id="nav"></nav>
     <div class="sgap"></div>
     <div class="demo" id="demo-d"></div>
-    <div class="me"><img class="av" src="data:image/jpeg;base64,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" alt=""><div><b>Tobi Adeyemi</b><small>Cleva verified · •••• 4821</small></div></div>
+    <div class="me" id="me"></div>
   </aside>
 
   <main>
@@ -299,7 +303,7 @@ main{min-width:0;padding-top:6px}
 (function(){
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],root=document.documentElement;
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const AV='data:image/jpeg;base64,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';
+const AVT='data:image/jpeg;base64,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';
 const CREATE='/new',CLIENT='/i/';
 const money=(n,d=2)=>'$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const I={
@@ -363,13 +367,19 @@ const rel=ts=>{const m=Math.round((Date.now()-ts)/60e3);if(m<1)return 'Just now'
 const today=()=>new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'short',...TZ});
 const greet=()=>{const h=+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',hour12:false,...TZ});return h<12?'Good morning':h<17?'Good afternoon':'Good evening'};
 function norm(raw){const now=new Date();PROF=raw.profile||PROF;
- S={empty:S.empty,filter:S.filter,
+ S={empty:S.empty,auto:S.auto,filter:S.filter,
   projects:raw.projects.map(p=>({...p,sub:p.subs,link:location.host+'/i/'+p.code,updated:rel(p.updatedTs),sent:p.sentTs?fD(p.sentTs):'',due:p.dueTs?fD(p.dueTs)+' '+new Date(p.dueTs).getFullYear():'',
    delivered:p.deliveredTs?fD(p.deliveredTs):'',paid:p.paid?fDT(p.paid.ts)+' WAT':null,tx:p.paid?p.paid.tx:'',method:p.paid?(p.paid.method==='usdt'?'USDT':'Card'):null,
    month:!!(p.paid&&new Date(p.paid.ts).getMonth()===now.getMonth()),req:p.req?{...p.req,at:rel(p.req.ts),mins:Math.max(0,Math.round((Date.now()-p.req.ts)/60e3))}:null,
    answeredMsg:p.answered||null,tl:p.tl.map(e=>({...e,at:fDT(e.ts)}))})),
-  notes:raw.notes.map(n=>({...n,at:rel(n.ts),g:(Date.now()-n.ts)<18*3600e3?'Today':'Earlier'}))}}
-let PROF={name:'Tobi Adeyemi'};
+  notes:raw.notes.map(n=>({...n,at:rel(n.ts),g:(Date.now()-n.ts)<18*3600e3?'Today':'Earlier'}))};
+ if(!S.projects.length){S.empty=true;S.auto=true}else if(S.auto){S.empty=false;S.auto=false}}
+let PROF={name:''};
+const FN=()=>((PROF.name||'').trim().split(' ')[0]||'there');
+const PV=()=>(PROF.payout&&PROF.payout.provider)||'Cleva';
+const myAV=()=>{if(PROF.photo&&/^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*$/.test(PROF.photo))return PROF.photo;if(!PROF.custom&&PROF.name==='Tobi Adeyemi')return AVT;
+ const t=(PROF.name||'You').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+ return 'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#0F0F0F"/><text x="40" y="51" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="600" text-anchor="middle" fill="#F6F6F3">'+t+'</text></svg>')};
 async function sync(force){try{const raw=await API.get();if(!force&&raw.v===VER)return;const prevEarn=earned(),prevMax=LASTNOTE;VER=raw.v;norm(raw);
   const mx=Math.max(0,...S.notes.map(n=>n.id));
   if(!BOOT&&mx>prevMax){const fresh=S.notes.filter(n=>n.id>prevMax&&n.unread);if(fresh.length){const n=fresh[0];toast(n.html.replace(/<[^>]+>/g,''),false,true);}}
@@ -401,12 +411,13 @@ function chrome(){const n=unread();
  $('#tabs').innerHTML='<button data-go="dashboard"'+(cur==='dashboard'||cur==='project'?' aria-current="page"':'')+'>'+I.home+'<span>Home</span></button>'+
   '<a class="new" href="'+CREATE+'#templates"><span>'+I.plus+'</span><span>New invoice</span></a>'+
   '<button data-go="notifications"'+(cur==='notifications'?' aria-current="page"':'')+'>'+I.bell+(n?'<span class="badge">'+n+'</span>':'')+'<span>Alerts</span></button>';
- $('#demo-d').innerHTML=demoHTML()}
+ $('#demo-d').innerHTML=demoHTML();
+ $('#me').innerHTML='<img class="av" src="'+myAV()+'" alt=""><div><b>'+esc(PROF.name||'Your profile')+'</b><small>'+(PROF.verified!==false?'ID verified · ':'')+esc(PV())+(PV()==='USDT wallet'?'':' •••• 4821')+'</small></div>'}
 function demoHTML(){const lumi=P('lumi')||{};return '<span class="eyebrow">Demo controls</span>'+
  '<button data-demo="pay"'+(lumi.status!=='sent'||S.empty?' disabled':'')+'><i></i>Clara pays $450</button>'+
- '<button data-demo="ask"'+((P('kora')||{}).req||S.empty?' disabled':'')+'><i></i>James asks for an update</button>'+
- '<button data-demo="empty"><i></i>'+(S.empty?'Show sample account':'Show empty account')+'</button>'+
- '<button data-demo="reset"><i></i>Reset demo</button>'}
+ '<button data-demo="ask"'+(!P('kora')||(P('kora')||{}).req||S.empty?' disabled':'')+'><i></i>James asks for an update</button>'+
+ '<button data-demo="sample"><i></i>Load sample data</button>'+
+ '<button data-demo="fresh"><i></i>Clear all data</button>'}
 
 // ===== balance privacy (remembered on this device) =====
 let HIDE=false;try{HIDE=localStorage.getItem('pm-hide')==='1'}catch(e){}
@@ -418,7 +429,7 @@ const eyeBtn=()=>'<button class="eye" data-eye aria-pressed="'+HIDE+'" aria-labe
 const statusChip=s=>'<span class="chip '+s+'"><i></i>'+LABEL[s]+'</span>';
 const pct=p=>p.status==='delivered'?100:((p.stage+.5)/p.stages.length*100);
 function prow(p){const bars=p.status==='draft'||p.status==='sent'?'':'<div class="bars">'+p.stages.map((s,i)=>'<i class="'+(i<=p.stage||p.status==='delivered'?'on':'')+'"></i>').join('')+'</div>';
- const prog=p.status==='draft'?'Not sent yet':p.status==='sent'?'Sent '+p.sent+' · not paid':p.status==='delivered'?'Delivered '+p.delivered:'Stage '+(p.stage+1)+' of '+p.stages.length+' · '+p.stages[p.stage];
+ const prog=p.status==='draft'?'Not sent yet':p.status==='sent'?'Sent '+p.sent+' · not paid':p.status==='delivered'?'Delivered '+p.delivered:'Stage '+(p.stage+1)+' of '+p.stages.length+' · '+esc(p.stages[p.stage]);
  return '<button class="prow" data-go="project" data-id="'+p.id+'"><span class="av">'+ini(p.client)+'</span>'+
   '<span class="t"><b>'+esc(p.title)+(p.req?'<span class="flag" aria-label="Open update request"></span>':'')+'</b><small>'+esc(p.client)+' · '+esc(p.co)+'</small></span>'+
   '<span class="mini">'+bars+'<span>'+prog+'</span></span>'+
@@ -426,8 +437,8 @@ function prow(p){const bars=p.status==='draft'||p.status==='sent'?'':'<div class
   '<span class="amt">'+money(p.amt,0)+'<small>'+(p.method?p.method:p.status==='draft'?'Draft':'Pending')+'</small></span></button>'}
 function dashboard(){
  if(S.empty)return '<div class="view">'+
-  '<div class="ph"><div><span class="eyebrow">'+today()+'</span><h1>Welcome, '+esc(PROF.name.split(' ')[0])+'</h1><div class="sub">Your profile and Cleva payout are set. One step left.</div></div></div>'+
-  '<div class="card empty"><div class="vig" aria-hidden="true"><svg viewBox="0 0 160 118"><defs><clipPath id="slotclip"><rect x="0" y="40" width="160" height="78"/></clipPath></defs><g clip-path="url(#slotclip)"><g class="tk"><rect x="52" y="30" width="56" height="78" rx="4" fill="#FFFFFF" stroke="#DFDFDA"/><path d="M52 34a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v24H52z" fill="#2E5BFF"/><rect x="58" y="44" width="24" height="7" rx="2" fill="#FFFFFF" opacity=".9"/><rect x="58" y="66" width="40" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="75" width="30" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="88" width="44" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="97" width="22" height="4" rx="2" fill="#E4E4DF"/></g></g><rect x="26" y="14" width="108" height="32" rx="13" fill="#141413" stroke="var(--line)"/><rect x="36" y="38" width="88" height="4" rx="2" fill="#000"/><circle class="led" cx="120" cy="25" r="3" fill="#FF5B1F"/><path d="M40 21h10a6 6 0 0 1 0 12h-5v1.5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2z" fill="#F2F1EC"/><circle cx="50" cy="27" r="2.6" fill="#FF5B1F"/></svg></div><span class="eyebrow">No invoices yet</span><h3>Send your first invoice</h3><p>Pick a template for your craft, add the work, and send it as a link. Your client pays in USD or USDT, straight to Cleva.</p>'+
+  '<div class="ph"><div><span class="eyebrow">'+today()+'</span><h1>Welcome, '+esc(PROF.name.split(' ')[0])+'</h1><div class="sub">Your profile and '+esc(PV())+' payout are set. One step left.</div></div></div>'+
+  '<div class="card empty"><div class="vig" aria-hidden="true"><svg viewBox="0 0 160 118"><defs><clipPath id="slotclip"><rect x="0" y="40" width="160" height="78"/></clipPath></defs><g clip-path="url(#slotclip)"><g class="tk"><rect x="52" y="30" width="56" height="78" rx="4" fill="#FFFFFF" stroke="#DFDFDA"/><path d="M52 34a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v24H52z" fill="#2E5BFF"/><rect x="58" y="44" width="24" height="7" rx="2" fill="#FFFFFF" opacity=".9"/><rect x="58" y="66" width="40" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="75" width="30" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="88" width="44" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="97" width="22" height="4" rx="2" fill="#E4E4DF"/></g></g><rect x="26" y="14" width="108" height="32" rx="13" fill="#141413" stroke="var(--line)"/><rect x="36" y="38" width="88" height="4" rx="2" fill="#000"/><circle class="led" cx="120" cy="25" r="3" fill="#00C389"/><path d="M40 21h10a6 6 0 0 1 0 12h-5v1.5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2z" fill="#F2F1EC"/><circle cx="50" cy="27" r="2.6" fill="#FF5B1F"/></svg></div><span class="eyebrow">No invoices yet</span><h3>Send your first invoice</h3><p>Pick a template for your craft, add the work, and send it as a link. Your client pays in USD or USDT, straight to your account.</p>'+
   '<a class="btn sig" href="'+CREATE+'#templates">'+I.plus+'Create your first invoice</a>'+
   '<div class="steps3"><div><span>01</span><b>Pick a template</b>Designed for design, dev, writing or video.</div><div><span>02</span><b>Send the link</b>WhatsApp, email or QR. No client account needed.</div><div><span>03</span><b>Get paid, show progress</b>Stages and updates keep your client close.</div></div></div>'+
   '<div class="stats"><div class="card stat"><span class="eyebrow">Earned</span><span class="n">$0</span><span class="d">Your first payment shows here</span></div><div class="card stat"><span class="eyebrow">Awaiting payment</span><span class="n">$0</span></div><div class="card stat"><span class="eyebrow">Active projects</span><span class="n">0</span></div></div></div>';
@@ -440,7 +451,7 @@ function dashboard(){
  (r?'<section class="req" aria-label="Open update requests"><span class="av">'+ini(r.client)+'</span><div style="min-width:0"><b>'+esc(r.client)+' is waiting for an update</b><q>'+esc(r.req.q)+'</q><small>'+esc(r.title)+' · asked '+r.req.at+' · reply within 3 hrs to keep your response badge</small></div><button class="btn ink" data-go="project" data-id="'+r.id+'">Reply now</button>'+
    (reqs.length>1?'<div class="more">+'+(reqs.length-1)+' more waiting: '+reqs.slice(1).map(x=>'<a href="#" data-go="project" data-id="'+x.id+'">'+esc(x.client)+'</a>').join(', ')+'</div>':'')+'</section>'
   :'<div class="allclear"><i></i>No open requests. Every client has an answer.</div>')+
- '<div class="stats"><div class="card stat hero"><span class="sth"><span class="eyebrow">Earned · paid to Cleva •••• 4821</span>'+eyeBtn()+'</span><span class="n" id="earned">'+(HIDE?MASK:money(e,0))+'<small> USD</small></span><span class="d"><span><b>+'+(HIDE?MASK:money(month,0))+'</b> this month</span><span>'+paidList().length+' paid invoices</span></span></div>'+
+ '<div class="stats"><div class="card stat hero"><span class="sth"><span class="eyebrow">Earned · paid to '+esc(PV())+' •••• 4821</span>'+eyeBtn()+'</span><span class="n" id="earned">'+(HIDE?MASK:money(e,0))+'<small> USD</small></span><span class="d"><span><b>+'+(HIDE?MASK:money(month,0))+'</b> this month</span><span>'+paidList().length+' paid invoices</span></span></div>'+
  '<button class="card stat" style="text-align:left;color:inherit" data-filter="waiting"><span class="eyebrow">Awaiting payment</span><span class="n">'+(HIDE?MASK:money(wait.reduce((s,p)=>s+p.amt,0),0))+'</span><span class="d">'+(wait.length?wait.length+' invoice · sent '+wait[0].sent:'All invoices paid')+'</span></button>'+
  '<button class="card stat" style="text-align:left;color:inherit" data-filter="active"><span class="eyebrow">Active projects</span><span class="n">'+act.length+'</span><span class="d">'+act.filter(p=>p.status==='review').length+' waiting on client review</span></button></div>'+
  '<section style="display:grid;gap:12px"><div class="sech"><h2>Projects</h2><div class="seg" role="group" aria-label="Filter projects">'+[['all','All'],['active','Active'],['waiting','Unpaid'],['done','Delivered']].map(x=>'<button data-filter="'+x[0]+'" aria-pressed="'+(f===x[0])+'">'+x[1]+'</button>').join('')+'</div></div>'+
@@ -451,8 +462,8 @@ function dashboard(){
 function stageList(p){const done=p.status==='delivered';return '<div class="track"><i style="width:'+pct(p)+'%"></i></div><ol class="stg">'+p.stages.map((s,i)=>{const st=done||i<p.stage?'done':i===p.stage?'now':'todo';
  return '<li class="'+st+'"><span class="dot">'+(st==='done'?I.check:'')+'</span><div><div class="n">'+esc(s)+'</div><div class="s">'+(st==='now'?'In progress · ':'')+esc(p.sub[i]||'')+'</div></div></li>'}).join('')+'</ol>'}
 function tlItem(e,p){const at='<span>'+e.at+'</span>';
- if(e.k==='update')return '<li><span class="ic"><img src="'+AV+'" alt=""></span><div><div class="meta"><b>You</b>'+at+(e.fast?'<span class="fast">'+e.fast+'</span>':'')+'</div><div class="body">'+esc(e.text)+'</div>'+(e.link?'<span class="lnk">'+I.link+esc(e.link)+'</span>':'')+'</div></li>';
- if(e.k==='answer')return '<li><span class="ic ask">'+ini(p.client)+'</span><div><div class="meta"><b>'+esc(p.client.split(' ')[0])+' asked</b>'+at+'</div><div class="body">"'+esc(e.q)+'"</div></div></li><li><span class="ic"><img src="'+AV+'" alt=""></span><div><div class="meta"><b>You replied</b><span class="fast">'+e.fast+'</span></div><div class="body">'+esc(e.text)+'</div>'+(e.link?'<span class="lnk">'+I.link+esc(e.link)+'</span>':'')+'</div></li>';
+ if(e.k==='update')return '<li><span class="ic"><img src="'+myAV()+'" alt=""></span><div><div class="meta"><b>You</b>'+at+(e.fast?'<span class="fast">'+e.fast+'</span>':'')+'</div><div class="body">'+esc(e.text)+'</div>'+(e.link?'<span class="lnk">'+I.link+esc(e.link)+'</span>':'')+'</div></li>';
+ if(e.k==='answer')return '<li><span class="ic ask">'+ini(p.client)+'</span><div><div class="meta"><b>'+esc(p.client.split(' ')[0])+' asked</b>'+at+'</div><div class="body">"'+esc(e.q)+'"</div></div></li><li><span class="ic"><img src="'+myAV()+'" alt=""></span><div><div class="meta"><b>You replied</b><span class="fast">'+e.fast+'</span></div><div class="body">'+esc(e.text)+'</div>'+(e.link?'<span class="lnk">'+I.link+esc(e.link)+'</span>':'')+'</div></li>';
  if(e.k==='pay')return '<li><span class="ic pay">'+I.coin+'</span><div><div class="sys">'+esc(e.text)+' · '+e.at+'</div></div></li>';
  return '<li><span class="ic">'+I.flag+'</span><div><div class="sys">'+esc(e.text)+' · '+e.at+'</div></div></li>'}
 function project(){const p=P(curP);const first=p.client.split(' ')[0];
@@ -477,7 +488,7 @@ function project(){const p=P(curP);const first=p.client.split(' ')[0];
   '<div class="crow">'+(last?'<span></span>':'<label><input type="checkbox" id="up-adv">Also move to <b style="font-weight:500;color:var(--ink)">'+esc(p.stages[p.stage+1])+'</b></label>')+'<button class="btn ink" type="submit">'+(p.req?'Send reply':'Post update')+'</button></div></form></div>';
  const stagesCard='<div class="card pad"><div class="cardh"><h3>Stages</h3><span class="eyebrow">'+(done?'Complete':'Stage '+(p.stage+1)+' of '+p.stages.length)+'</span></div>'+stageList(p)+
   (done?'':'<div class="sacts">'+(last?'<button class="btn ink" data-act="deliver">Mark as delivered</button>':'<button class="btn ink" data-act="next">Move to '+esc(p.stages[p.stage+1])+'</button>')+(p.stage>1?'<button class="btn text sm" data-act="back">Step back to '+esc(p.stages[p.stage-1])+'</button>':'')+'</div>')+'</div>';
- const payCard='<div class="card pad"><div class="cardh"><h3>Payment</h3><span class="chip paid"><i></i>Paid</span></div><div class="kv"><div><span>Amount</span><b>'+money(p.amt)+'</b></div><div><span>Paid on</span><b>'+p.paid+'</b></div><div><span>Method</span><b class="mono">'+esc(p.tx)+'</b></div><div><span>Settled to</span><b>Cleva •••• 4821</b></div></div><div class="linkbox"><code>'+p.link+'</code><button class="btn ghost sm" data-copy="'+p.link+'">Copy</button></div></div>';
+ const payCard='<div class="card pad"><div class="cardh"><h3>Payment</h3><span class="chip paid"><i></i>Paid</span></div><div class="kv"><div><span>Amount</span><b>'+money(p.amt)+'</b></div><div><span>Paid on</span><b>'+p.paid+'</b></div><div><span>Method</span><b class="mono">'+esc(p.tx)+'</b></div><div><span>Settled to</span><b>'+esc(PV())+' •••• 4821</b></div></div><div class="linkbox"><code>'+p.link+'</code><button class="btn ghost sm" data-copy="'+p.link+'">Copy</button></div></div>';
  return '<div class="view">'+head+'<div class="pgrid"><div class="col">'+req+composer+
   '<div class="card pad"><div class="cardh"><h3>Timeline</h3><span class="eyebrow">Newest first · '+esc(first)+' sees this</span></div><ul class="tl" id="tl">'+p.tl.map(e=>tlItem(e,p)).join('')+'</ul></div></div>'+
   '<div class="col">'+stagesCard+payCard+'</div></div></div>'}
@@ -493,9 +504,9 @@ function states(){const bar='<div class="pbar">'+LOGO+'PayMe Global</div>';
  return '<div class="view"><div class="ph"><div><span class="eyebrow">Edge states · what the client sees</span><h1>Client states</h1><div class="sub">Three moments where things don\'t go to plan. Each one says what happened and what to do next.</div></div></div>'+
  '<div class="phones">'+
  '<div class="phone">'+bar+'<span class="lab">Payment failed</span><div class="panel"><h4>Pay $850.00</h4><div class="err"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.8v3.8M8 10.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><b>Your card was declined.</b> Nothing was charged. Your bank may block international payments; try another card or pay with USDT.</span></div><div class="stat2"><span>Visa •••• 0002</span><span>Declined 14:31</span></div><button class="btn sig">Try another card</button><button class="btn ghost">Pay with USDT instead</button></div></div>'+
- '<div class="phone">'+bar+'<span class="lab">Request already open</span><div class="panel"><h4>Project progress</h4><p>Stage 2 of 5 · Kick-off and UX audit</p><div class="answered" style="background:var(--surface);color:var(--ink2)"><span class="av" style="width:28px;height:28px;font-size:10px">DW</span>"Can I see a preview?" · sent 2 hrs ago</div><button class="btn ink" disabled>Requested · waiting for Tobi</button><p style="text-align:center;font-size:12.5px">Tobi usually replies within 3 hrs. You can ask again once he replies.</p></div></div>'+
+ '<div class="phone">'+bar+'<span class="lab">Request already open</span><div class="panel"><h4>Project progress</h4><p>Stage 2 of 5 · Kick-off and UX audit</p><div class="answered" style="background:var(--surface);color:var(--ink2)"><span class="av" style="width:28px;height:28px;font-size:10px">DW</span>"Can I see a preview?" · sent 2 hrs ago</div><button class="btn ink" disabled>Requested · waiting for '+esc(FN())+'</button><p style="text-align:center;font-size:12.5px">'+esc(FN())+' usually replies within 3 hrs. You can ask again once they replies.</p></div></div>'+
  '<div class="phone">'+bar+'<span class="lab">Invalid or expired link</span><div class="panel" style="text-align:center;justify-items:center;padding:28px 18px"><span class="icn">'+I.link.replace('width="13" height="13"','width="24" height="24"')+'</span><h4>This invoice link doesn\'t work</h4><p>It may have a typo, or the freelancer cancelled it. Ask the person who sent it for a new link.</p><div class="linkbox" style="width:100%;margin-top:4px"><code>payme.global/i/k3Rf9xQ2mT7</code></div><p style="font-size:12.5px">Nothing was charged.</p></div></div>'+
- '</div><p class="cap">The other edge states live in the app: an empty account (Demo controls → Show empty account), an unpaid invoice (Lumi Studio), a draft (Pace) and a delivered project (Nordlys).</p></div>'}
+ '</div><p class="cap">The other edge states live in the app: an empty account (Demo controls → Clear all data), an unpaid invoice (Lumi Studio), a draft (Pace) and a delivered project (Nordlys).</p></div>'}
 
 // ===== render + events =====
 function render(live){const keep=live&&$('#up-text')?{t:$('#up-text').value,l:$('#up-link').value,a:$('#up-adv')&&$('#up-adv').checked,f:document.activeElement&&document.activeElement.id,y:scrollY}:null;
@@ -516,15 +527,15 @@ document.addEventListener('click',e=>{
   if(a.dataset.act==='deliver')act('stage',{id:p.id,dir:'deliver'},'Delivered. Nice work, '+PROF.name.split(' ')[0]+'.');
   return}
  const c=e.target.closest('[data-copy]');if(c){copy('https://'+c.dataset.copy,'Link copied');return}
- const r=e.target.closest('[data-remind]');if(r){const p=P(r.dataset.remind);copy('Hi '+p.client.split(' ')[0]+', a quick reminder about the invoice for '+p.title+' ('+money(p.amt)+'), due '+p.due+'. You can pay by card or USDT here: https://'+p.link+' Thanks, Tobi','Reminder copied. Paste it into WhatsApp or email.');return}
+ const r=e.target.closest('[data-remind]');if(r){const p=P(r.dataset.remind);copy('Hi '+p.client.split(' ')[0]+', a quick reminder about the invoice for '+p.title+' ('+money(p.amt)+'), due '+p.due+'. You can pay by card or USDT here: https://'+p.link+' Thanks, '+FN(),'Reminder copied. Paste it into WhatsApp or email.');return}
  const n=e.target.closest('[data-note]');if(n){const x=S.notes.find(q=>q.id==n.dataset.note);x.unread=false;API.do('read',{note:x.id}).catch(()=>{});go('project',x.p);return}
  if(e.target.closest('#readall')){act('read',{all:true},'All caught up.');return}
  if(e.target.closest('[data-eye]')){HIDE=!HIDE;try{localStorage.setItem('pm-hide',HIDE?'1':'0')}catch(x){}render();toast(HIDE?'Balance hidden':'Balance shown');return}
  if(e.target.closest('.mode')){toggleMode();return}
  const d=e.target.closest('[data-demo]');if(d&&!d.disabled)demo(d.dataset.demo)});
 function demo(k){
- if(k==='reset'){act('reset',{},'Demo reset. Everyone sees the fresh data.').then(()=>go(cur==='project'?'dashboard':cur));return}
- if(k==='empty'){S.empty=!S.empty;go(cur==='project'?'dashboard':cur);return}
+ if(k==='sample'){S.empty=false;S.auto=false;act('sample',{},'Sample projects loaded. Your profile stays.').then(()=>go(cur==='project'?'dashboard':cur));return}
+ if(k==='fresh'){act('fresh',{},'All data cleared. Start with your first invoice.').then(()=>go('dashboard'));return}
  if(k==='pay'){act('pay',{id:'lumi',method:'usdt'})}
  if(k==='ask'){act('request',{id:'kora',q:'Any update on the guidelines?',note:'The board meets Friday and I\'d love to show progress.'})}}
 function countUp(a,b){const el=$('#earned');if(!el||HIDE||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const t0=performance.now(),d=1100;
@@ -537,6 +548,10 @@ try{const m=localStorage.getItem('pm-mode');if(m)root.setAttribute('data-theme',
 document.querySelector('.me').insertAdjacentHTML('beforeend','<button class="ib mode" aria-label="Switch light or dark" style="margin-left:auto;border:0;background:var(--surface);border-radius:10px;width:32px;height:32px;display:grid;place-items:center;color:var(--ink2);flex:none"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button>');
 sync(true).then(()=>go((location.hash||'#dashboard').slice(1)));
 })();
+
+(function(){let last=scrollY,acc=0;addEventListener('scroll',()=>{const el=document.querySelector('.mtop');if(!el)return;const y=scrollY,d=y-last;last=y;
+ if(y<80||document.querySelector('.sheet.on,.modal.on,[aria-modal="true"]:not([hidden])')){el.classList.remove('nav-hid');acc=0;return}
+ acc=(Math.sign(d)===Math.sign(acc)?acc:0)+d;if(acc>14)el.classList.add('nav-hid');else if(acc<-6)el.classList.remove('nav-hid')},{passive:true})})();
 </script>
 
 </body></html>

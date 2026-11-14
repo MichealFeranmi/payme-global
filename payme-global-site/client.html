@@ -1,4 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Designed invoices for student freelancers. Clients abroad pay in USD or USDT, straight to Cleva, and follow the work stage by stage."><meta property="og:title" content="PayMe Global"><meta property="og:description" content="Designed invoices for student freelancers. Clients abroad pay in USD or USDT, straight to Cleva, and follow the work stage by stage."><meta name="theme-color" content="#0A0A0A"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0F0F'/%3E%3Cpath fill='%23F2F1EC' d='M18 12h16a16 16 0 0 1 0 32h-8v2a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V17a5 5 0 0 1 5-5z'/%3E%3Ccircle fill='%23FF5B1F' cx='34' cy='28' r='7'/%3E%3C/svg%3E"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Designed invoices for freelancers across Africa. Clients abroad pay in USD or USDT, straight to the freelancer, and follow the work stage by stage."><meta property="og:title" content="PayMe Global"><meta property="og:description" content="Designed invoices for freelancers across Africa. Clients abroad pay in USD or USDT, straight to the freelancer, and follow the work stage by stage."><meta name="theme-color" content="#0A0A0A"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F0F0F'/%3E%3Cpath fill='%23F2F1EC' d='M18 12h16a16 16 0 0 1 0 32h-8v2a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V17a5 5 0 0 1 5-5z'/%3E%3Ccircle fill='%23FF5B1F' cx='34' cy='28' r='7'/%3E%3C/svg%3E"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}@media (min-width:1024px){body{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}}
+</style></head><body>
 <title>PayMe Ticket Demo</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7,7 +8,7 @@
 /* Layout: client view. Printer + ticket column; side column (pay card, then progress). Phones: pay bar fixed at bottom, progress below the ticket. */
 :root{
   --bg:#F6F6F3; --surface:#EDEDEA; --raised:#FFFFFF; --line:#DFDFDA;
-  --ink:#0F0F0F; --ink2:#55554F; --ink3:#7A7A74; --signal:#FF5B1F; --mint:#00C389; --mint-ink:#0F5132; --mint-bg:#E3F4EA;
+  --ink:#0F0F0F; --ink2:#55554F; --ink3:#7A7A74; --signal:#FF5B1F; --paid:#0E9F6E; --mint:#00C389; --mint-ink:#0F5132; --mint-bg:#E3F4EA;
   --scrim:rgba(15,15,15,.38); --grain:.06;
   --t-paper:#FFFFFF; --t-ink:#0F0F0F; --t-ink2:#55554F; --t-ink3:#8A8A84; --t-line:#E4E4DF; --t-tint:#F4F4F1;
   --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -56,7 +57,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .p-face .m{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:-.04em;font-size:14px}
 .p-face svg{width:20px;height:20px}
 .p-stat{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:#A9A8A2}
-.led{width:9px;height:9px;border-radius:50%;background:#FF5B1F;box-shadow:0 0 0 3px rgba(255,91,31,.18),0 0 12px 2px rgba(255,91,31,.55)}
+.led{width:9px;height:9px;border-radius:50%;background:#00C389;box-shadow:0 0 0 3px rgba(0,195,137,.16),0 0 12px 2px rgba(0,195,137,.45)}
 .printer.busy .led{animation:blink .5s steps(2) infinite}
 @keyframes blink{50%{opacity:.25;box-shadow:none}}
 .p-slot{position:absolute;left:14px;right:14px;bottom:16px;height:7px;border-radius:999px;background:#000;box-shadow:inset 0 2px 3px rgba(0,0,0,.9),0 1px 0 rgba(255,255,255,.08)}
@@ -138,7 +139,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .powered{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:14px;font-size:11.5px;color:var(--t-ink3)}
 .powered svg{width:14px;height:14px}
 .scallop{height:14px;background:var(--t-paper);-webkit-mask:radial-gradient(circle 8px at 50% 100%,#0000 97%,#000) 50% 0/22px 100% repeat-x;mask:radial-gradient(circle 8px at 50% 100%,#0000 97%,#000) 50% 0/22px 100% repeat-x}
-.stamp{position:absolute;right:22px;top:12px;z-index:2;transform:rotate(-9deg);border:2.5px solid var(--signal);color:var(--signal);border-radius:10px;padding:4px 10px 3px;font-weight:600;font-size:22px;letter-spacing:.02em;line-height:1;text-align:center;mix-blend-mode:multiply}
+.stamp{position:absolute;right:22px;top:12px;z-index:2;transform:rotate(-9deg);border:2.5px solid var(--paid);color:var(--paid);border-radius:10px;padding:4px 10px 3px;font-weight:600;font-size:22px;letter-spacing:.02em;line-height:1;text-align:center;mix-blend-mode:multiply}
 .stamp small{display:block;font-family:var(--mono);font-weight:500;font-size:9px;letter-spacing:.1em;margin-top:3px}
 .ticket:not(.paid) .paid-only{display:none!important}
 .ticket.paid .unpaid-only{display:none!important}
@@ -258,10 +259,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 textarea{font:inherit;font-size:16px;color:var(--ink);width:100%;min-height:84px;border:1px solid var(--line);background:var(--raised);border-radius:14px;padding:12px 14px;resize:vertical;margin-bottom:14px}
 .toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translate(-50%,-160%);visibility:hidden;z-index:80;background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 16px;font-size:13.5px;transition:transform .35s cubic-bezier(.2,.8,.2,1),visibility .35s;max-width:calc(100% - 32px);text-align:center}
 .toast.on{transform:translate(-50%,0);visibility:visible}
-.coin{position:fixed;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFB08F,#FF5B1F 55%,#C73E0C);z-index:85;pointer-events:none;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.coin{position:fixed;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFFFFF,#C9C9C3 55%,#7E7E78);z-index:85;pointer-events:none;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
 /* iPhone Safari zooms into any field under 16px and stays zoomed: keep every field at 16px+ */
 input,textarea,select{font-size:max(16px,1em)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* hidden overlays: also out of tab order and screen readers */.sheet:not(.on),.modal:not(.on){visibility:hidden;transition:transform .3s,opacity .25s,visibility 0s .3s}
 </style>
 
 <header class="top">
@@ -301,7 +303,7 @@ input,textarea,select{font-size:max(16px,1em)}
             <img class="av" src="data:image/jpeg;base64,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" alt="Tobi Adeyemi">
             <div style="min-width:0">
               <div class="name">Tobi Adeyemi <span class="ver"><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="#00C389" d="M10 1.5l2.1 1.6 2.6-.2.9 2.5 2.3 1.3-.6 2.6 1.1 2.4-2 1.7-.3 2.6-2.6.4-1.6 2.1L10 17.4l-2.5 1.1-1.6-2.1-2.6-.4-.3-2.6-2-1.7L2.1 9.3l-.6-2.6 2.3-1.3.9-2.5 2.6.2z"/><path d="M6.6 10.2l2.3 2.2 4.5-4.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Cleva verified</span></div>
-              <div class="role">UI/UX Designer · University of Lagos</div>
+              <div class="role">UI/UX Designer · Lagos, Nigeria</div>
             </div>
             <div class="who-meta">
               <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 9.5l3-3M7 4.5l1.2-1.2a2.6 2.6 0 0 1 3.7 3.7L10.7 8.2M9 11.5l-1.2 1.2a2.6 2.6 0 0 1-3.7-3.7L5.3 7.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><a href="https://behance.net" target="_blank" rel="noopener">behance.net/tobiadeyemi</a></span>
@@ -441,7 +443,7 @@ input,textarea,select{font-size:max(16px,1em)}
 (async function(){
   const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s), root=document.documentElement;
   const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const AV=document.querySelector('.av').src;
+  let AV=document.querySelector('.av').src;
 
   // ===== per-project client data: the page opens for whichever client the link names (#northwind, #kora, #lumi, #nordlys, #fieldnotes) =====
   const PROJ={
@@ -485,22 +487,28 @@ input,textarea,select{font-size:max(16px,1em)}
     asks:['Could we get a square crop?','Thank you, all received!','Are you free for the spring issue?']}
   };
   const CODE=(location.pathname.match(/\/i\/([A-Za-z0-9]+)/)||[])[1]||location.hash.slice(1);
-  const API={get:()=>fetch('/api/state',{cache:'no-store'}).then(r=>r.json()),
+  const API={get:()=>fetch('/api/state?code='+encodeURIComponent(CODE),{cache:'no-store'}).then(r=>r.json()),
    do:(a,b)=>fetch('/api/state',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:a,code:CODE,...(b||{})})}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||'Something went wrong');return j})};
   let RAW=null;try{RAW=await API.get()}catch(e){}
   let PJ=RAW&&RAW.projects.find(p=>p.code===CODE&&p.status!=='draft');
   if(!PJ){document.querySelector('main.client').innerHTML='<div class="card" style="grid-column:1/-1;max-width:440px;margin:40px auto;text-align:center;display:grid;gap:12px;justify-items:center;padding:32px 24px"><div style="width:56px;height:56px;border-radius:18px;background:var(--surface);display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 9.5l3-3M7 4.5l1.2-1.2a2.6 2.6 0 0 1 3.7 3.7L10.7 8.2M9 11.5l-1.2 1.2a2.6 2.6 0 0 1-3.7-3.7L5.3 7.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div><h1 style="margin:0;font-size:28px;font-weight:500;letter-spacing:-.045em">This invoice link doesn\'t work</h1><p style="margin:0;color:var(--ink2)">It may have a typo, or the freelancer cancelled it. Ask the person who sent it for a new link. Nothing was charged.</p><code style="font-family:var(--mono);font-size:12px;background:var(--surface);border-radius:10px;padding:8px 12px;overflow-wrap:anywhere">'+location.host+location.pathname+'</code></div>';$('#replay').hidden=true;return}
+  // the freelancer behind this link: their name, photo and payout account
+  const PR=(RAW&&RAW.profile)||{},hx=x=>String(x==null?'':x).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const FULLT=(PR.name||'').trim()||'Your freelancer',FULL=hx(FULLT),FN=(PR.name||'').trim()?hx(FULLT.split(/\s+/)[0]):'your freelancer';
+  const ISW=!!(PR.payout&&PR.payout.mode==='usdt'),PV=ISW?'USDT wallet':((PR.payout&&PR.payout.provider)||'Cleva'),PVA=ISW?'USDT wallet':PV+' account';
+  const PINI=FULLT.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  if(PR.photo&&/^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*$/.test(PR.photo))AV=PR.photo;else if(PR.custom||FULLT!=='Tobi Adeyemi')AV='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#0F0F0F"/><text x="40" y="51" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="600" text-anchor="middle" fill="#F6F6F3">'+hx(PINI)+'</text></svg>');
   const TZ='Africa/Lagos';
   const fd=ts=>new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:TZ});
   const fds=ts=>new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',timeZone:TZ});
   const tm=ts=>new Date(ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:TZ})+' WAT';
   const stp=ts=>{const d=new Date(ts);return [d.getDate(),d.getMonth()+1,d.getFullYear()%100].map(x=>String(x).padStart(2,'0')).join('·')};
   const rel=ts=>{const m=Math.round((Date.now()-ts)/60e3);if(m<1)return 'Just now';if(m<60)return m+' min ago';const h=Math.round(m/60);if(h<24)return h+(h>1?' hrs':' hr')+' ago';return fds(ts)};
-  const escH=x=>String(x==null?'':x).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const escH=x=>String(x==null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function hist(p){const out=[];[...p.tl].reverse().forEach(e=>{
      if(e.k==='update')out.push(['tobi',escH(e.text),rel(e.ts),e.link?escH(e.link):'']);
-     if(e.k==='answer'){out.push(['me',escH(e.q),rel(e.ts)]);out.push(['tobi',escH(e.text),rel(e.ts),e.link?escH(e.link):''])}});
-    if(p.req)out.push(['me','<div>'+escH(p.req.q)+'</div>'+(p.req.note?'<div style="color:var(--ink2);margin-top:2px">'+escH(p.req.note)+'</div>':''),rel(p.req.ts),'<div class="wait">Waiting for Tobi</div>',1]);
+     if(e.k==='answer'){out.push(['me','<div>'+escH(e.q)+'</div>'+(e.note?'<div style="color:var(--ink2);margin-top:2px">'+escH(e.note)+'</div>':''),rel(e.ts)]);out.push(['tobi',escH(e.text),rel(e.ts),e.link?escH(e.link):''])}});
+    if(p.req)out.push(['me','<div>'+escH(p.req.q)+'</div>'+(p.req.note?'<div style="color:var(--ink2);margin-top:2px">'+escH(p.req.note)+'</div>':''),rel(p.req.ts),'<div class="wait">Waiting for '+FN+'</div>',1]);
     return out}
   function build(p){return {no:p.no,client:p.client,co:p.co||p.client,city:p.city||'',title:p.title,desc:p.desc||'',items:p.items,niche:p.niche||[],chips:p.chips||[],terms:p.terms||[],sign:p.sign||'',
     issued:fd(p.issuedTs),due:fd(p.dueTs),net:p.net||14,color:p.color||'#2E5BFF',
@@ -515,13 +523,21 @@ input,textarea,select{font-size:max(16px,1em)}
   const m2=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2}),usd=m2(TOT),usd0='$'+TOT.toLocaleString('en-US'),usdt=TOT.toLocaleString('en-US',{minimumFractionDigits:2})+' USDT';
   const LAST=D.stages.length-1;
   // swap the sample (Daniel) text for this client everywhere it appears
+  (function(){const role=[PR.head,PR.campus].filter(Boolean).join(' · ');
+   const U=[["Tobi's Cleva account",FULLT.split(/\s+/)[0]+"'s "+PVA],['Cleva account',PVA],['Cleva verified','ID verified'],['Tobi Adeyemi',FULLT],['UI/UX Designer · Lagos, Nigeria',role],['behance.net/tobiadeyemi',PR.site||''],['Tobi',FULLT.split(/\s+/)[0]]];
+   const sw=t=>U.reduce((a,[k,v])=>a.split(k).join(v),t);
+   const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('script,style')?2:1});let n;while(n=w.nextNode()){const v=sw(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}
+   $$('img.av,.route img').forEach(i=>{i.src=AV;if(i.alt)i.alt=FULLT});const lg=$('.ticket .logo');if(lg)lg.textContent=PINI;
+   if(PR.verified===false)$$('.ver').forEach(v=>v.hidden=true);
+   const st=$('.who-meta a');if(st){if(PR.site){st.href='https://'+String(PR.site).replace(/^https?:\/\//,'');}else st.closest('span').hidden=true}
+   const ro=$('.who .role');if(ro&&!role)ro.hidden=true})();
   (function(){const T=[['Northwind mobile app redesign',D.title],['Daniel Weber',D.client],['Northwind Studio',D.co],['Berlin, DE',D.city],['PMG-0042',D.no],['Due 22 Nov 2026','Due '+D.due],['08 Nov 2026',D.issued],['$850.00',usd],['850.00 USDT',usdt],['850 USDT',TOT+' USDT'],['$850',usd0],['22 Nov 2026',D.due],['Daniel',FIRST],['DW',INI]];
    const sw=t=>T.reduce((a,[k,v])=>a.split(k).join(v),t);
    const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('script,style')?2:1});let n;while(n=w.nextNode()){const v=sw(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}
    document.querySelectorAll('[aria-label],input[value]').forEach(e=>{if(e.hasAttribute('aria-label'))e.setAttribute('aria-label',sw(e.getAttribute('aria-label')));if(e.tagName==='INPUT')e.value=sw(e.value)});
    const esc=x=>String(x).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
    document.querySelector('.desc').textContent=D.desc;
-   if(D.sign)document.querySelector('.sign').innerHTML=escH(D.sign)+'<br><em>Tobi</em>';
+   if(D.sign)document.querySelector('.sign').innerHTML=escH(D.sign)+'<br><em>'+FN+'</em>';
    if(!D.niche.length)document.querySelector('.niche').hidden=true;
    document.querySelector('.ticket .items').innerHTML=D.items.map(i=>'<li><span class="it-n">'+esc(i[0])+'</span><span class="it-q">'+i[1]+' × '+m2(i[2])+'</span><span class="it-a">'+m2(i[1]*i[2])+'</span></li>').join('');
    document.querySelector('.niche').innerHTML=D.niche.map(x=>'<div><div class="k">'+esc(x[0])+'</div><div class="v">'+esc(x[1])+'</div></div>').join('');
@@ -554,11 +570,11 @@ input,textarea,select{font-size:max(16px,1em)}
   let cur=D.paid?D.stage:1;
   const renderStages=()=>{
     $('#stages').innerHTML=STAGES.map((s,i)=>{const st=i<cur?'done':i===cur?'now':'todo';
-      return '<li class="'+st+'"><span class="dot">'+(st==='done'?'<svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.2 2.2 4.8-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</span><div><div class="st-n">'+s[0]+'</div><div class="st-m">'+s[1]+'</div></div><span class="st-r">'+(st==='done'?'Done':st==='now'?'In progress':'')+'</span></li>'}).join('');
+      return '<li class="'+st+'"><span class="dot">'+(st==='done'?'<svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.2 2.2 4.8-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</span><div><div class="st-n">'+escH(s[0])+'</div><div class="st-m">'+escH(s[1])+'</div></div><span class="st-r">'+(st==='done'?'Done':st==='now'?'In progress':'')+'</span></li>'}).join('');
     $('#stepc').textContent=cur>LAST?'Delivered':'Stage '+(cur+1)+' of '+STAGES.length;$('#trackfill').style.width=(cur>LAST?100:(cur+.5)/STAGES.length*100)+'%';
   };
   const addUpdate=(who,text,extra)=>{const d=document.createElement('div');d.className='up'+(who==='me'?' me':'');
-    d.innerHTML=(who==='me'?'<i>'+INI+'</i>':'<img src="'+AV+'" alt="">')+'<div class="bub"><div class="meta"><b>'+(who==='me'?'You':'Tobi')+'</b><span>'+(extra&&extra.time||'Just now')+'</span></div>'+text+(extra&&extra.html||'')+'</div>';
+    d.innerHTML=(who==='me'?'<i>'+INI+'</i>':'<img src="'+AV+'" alt="">')+'<div class="bub"><div class="meta"><b>'+(who==='me'?'You':''+FN+'')+'</b><span>'+(extra&&extra.time||'Just now')+'</span></div>'+text+(extra&&extra.html||'')+'</div>';
     $('#updates').appendChild(d);return d};
 
   // printing
@@ -579,7 +595,7 @@ input,textarea,select{font-size:max(16px,1em)}
     raf=requestAnimationFrame(step);
   }
   function settle(){ticket.animate([{transform:'translateY(0)'},{transform:'translateY(5px)'},{transform:'translateY(0)'}],{duration:380,easing:'ease-out'});done()}
-  function done(){printer.classList.remove('busy');$('#pstat').textContent='READY';$('#headline').textContent='Invoice for '+D.co;$('#from').textContent='From Tobi Adeyemi · '+D.no;$('#bar').classList.add('show');if(D.paid&&!paid){method=D.paid.method;markPaid(true)}}
+  function done(){printer.classList.remove('busy');$('#pstat').textContent='READY';$('#headline').textContent='Invoice for '+D.co;$('#from').textContent='From '+FULL+' · '+D.no;$('#bar').classList.add('show');if(D.paid&&!paid){method=D.paid.method;markPaid(true)}}
 
   // sheet
   const sheet=$('#sheet'),scrim=$('#scrim');
@@ -595,12 +611,12 @@ input,textarea,select{font-size:max(16px,1em)}
   let paid=false;
   document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;
     if(b.dataset.act==='pay'&&!paid){setMethod(method);openSheet('pay','Pay '+usd)}
-    if(b.dataset.act==='req'){openSheet('req','Ask Tobi for an update')}});
+    if(b.dataset.act==='req'){openSheet('req','Ask '+FN+' for an update')}});
   const process=()=>{view('proc');
     $('#proc-t').textContent=method==='usdt'?'Checking the Tron network':'Authorising your card';
-    $('#proc-s').textContent=method==='usdt'?'Looking for '+TOT+' USDT to Tobi\'s address':'Talking to your bank';
+    $('#proc-s').textContent=method==='usdt'?'Looking for '+TOT+' USDT to '+FN+'\'s address':'Talking to your bank';
     API.do('pay',{method}).then(r=>{RAW=r;PJ=r.projects.find(p=>p.code===CODE);const up=PJ.tl.find(e=>e.k==='update');D.afterPay=up?up.text:'Payment received, thank you.';SEEN=PJ.tl.length;
-      later(()=>{$('#proc-t').textContent='Payment confirmed';$('#proc-s').textContent='Sending to Tobi\'s Cleva account'},900);
+      later(()=>{$('#proc-t').textContent='Payment confirmed';$('#proc-s').textContent='Sending to '+FN+'\'s '+PVA+''},900);
       later(()=>{closeSheet();markPaid()},1800)}).catch(e=>{view('pay');toast(e.message)})};
   $('#go-usdt').onclick=process;$('#p-card').onsubmit=e=>{e.preventDefault();process()};
 
@@ -629,9 +645,9 @@ input,textarea,select{font-size:max(16px,1em)}
       if(!RM)$('#stub').animate([{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0 0)'}],{duration:900,easing:'steps(18,end)'});
     },500);
     later(()=>{printer.classList.remove('busy');$('#pstat').textContent='PAID';
-      $('#headline').textContent=D.delivered?'Delivered. Thank you, '+FIRST:already?'Paid. Tobi is working on it':'Paid. Tobi has started';$('#from').textContent='Receipt '+REF;
+      $('#headline').textContent=D.delivered?'Delivered. Thank you, '+FIRST:already?'Paid. '+FN+' is working on it':'Paid. '+FN+' has started';$('#from').textContent='Receipt '+REF;
       $('#paycard').dataset.hide='1';
-      const bb=$('#bar-btn');bb.textContent='Request update';bb.dataset.act='req';bb.className='cta ink';$('#bar-fine').textContent='Tobi usually replies within 3 hrs';
+      const bb=$('#bar-btn');bb.textContent='Request update';bb.dataset.act='req';bb.className='cta ink';$('#bar-fine').textContent=''+FN+' usually replies within 3 hrs';
       cur=already?D.stage:1;renderStages();$('#updates').innerHTML='';
       if(already)D.history.forEach(h=>addUpdate(h[0],h[1],{time:h[2],html:h[3]?(h[4]?h[3]:'<div class="att">'+h[3]+'</div>'):''}));else addUpdate('tobi',D.afterPay);
       if(D.delivered)document.querySelector('.pill .paid-only').textContent='Paid · Delivered';
@@ -647,11 +663,11 @@ input,textarea,select{font-size:max(16px,1em)}
     const q=[...$$('#qchips button')].find(b=>b.getAttribute('aria-pressed')==='true').textContent;const note=$('#req-note').value.trim();
     if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();closeSheet();$('#req-note').value='';
     try{RAW=await API.do('request',{q,note});PJ=RAW.projects.find(p=>p.code===CODE)}catch(e){toast(e.message);return}
-    const mine=addUpdate('me','<div>'+escH(q)+'</div>'+(note?'<div style="color:var(--ink2);margin-top:2px">'+escH(note)+'</div>':''),{html:'<div class="wait">Waiting for Tobi</div>'});
-    reqBtn();toast('Request sent. Tobi gets a notification right away.');
+    const mine=addUpdate('me','<div>'+escH(q)+'</div>'+(note?'<div style="color:var(--ink2);margin-top:2px">'+escH(note)+'</div>':''),{html:'<div class="wait">Waiting for '+FN+'</div>'});
+    reqBtn();toast('Request sent. '+FN+' gets a notification right away.');
     mine.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});
   };
-  function reqBtn(){if(!paid)return;const open=!!(PJ&&PJ.req);$$('[data-act="req"]').forEach(b=>{b.textContent=open?'Requested · waiting for Tobi':'Request update';b.disabled=open})}
+  function reqBtn(){if(!paid)return;const open=!!(PJ&&PJ.req);$$('[data-act="req"]').forEach(b=>{b.textContent=open?'Requested · waiting for '+FN+'':'Request update';b.disabled=open})}
   // live: stages and replies from the freelancer show up within a few seconds
   let SEEN=PJ.tl.length,LSTAGE=PJ.stage,LREQ=!!PJ.req;
   setInterval(async()=>{if(!paid||document.hidden)return;let r;try{r=await API.get()}catch(e){return}
@@ -662,7 +678,7 @@ input,textarea,select{font-size:max(16px,1em)}
     const d2=build(p);D.stages.splice(0,D.stages.length,...d2.stages);cur=d2.stage;D.delivered=d2.delivered;renderStages();
     $('#updates').innerHTML='';d2.history.forEach(h=>addUpdate(h[0],h[1],{time:h[2],html:h[3]?(h[4]?h[3]:'<div class="att">'+h[3]+'</div>'):''}));
     if(d2.delivered){$('#headline').textContent='Delivered. Thank you, '+FIRST;document.querySelector('.pill .paid-only').textContent='Paid · Delivered'}
-    reqBtn();if(replied){toast('Tobi posted an update');const last=$('#updates').lastElementChild;if(last)last.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'})}
+    reqBtn();if(replied){toast(''+FN+' posted an update');const last=$('#updates').lastElementChild;if(last)last.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'})}
   },3000);
   let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600)}
 
@@ -670,8 +686,8 @@ input,textarea,select{font-size:max(16px,1em)}
   function reset(){cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];closeSheet();paid=false;method='usdt';
     ticket.classList.remove('paid');['#opt-usdt','#opt-card'].forEach(s=>$(s).classList.remove('sel','paid-only'));$('#card-sub').textContent='Visa, Mastercard, Amex';
     $('#progress').hidden=true;$('#paycard').dataset.hide='0';$('#bar').classList.remove('show');
-    const bb=$('#bar-btn');bb.textContent='Pay '+usd;bb.dataset.act='pay';bb.className='cta pay-btn';$('#bar-fine').textContent='USDT or card · Paid to Tobi\'s Cleva account';
-    $('#from').textContent='Tobi Adeyemi sent you an invoice';document.querySelector('.pill .paid-only').textContent='Paid · Work has started';cur=D.paid?D.stage:1;window.scrollTo({top:0});
+    const bb=$('#bar-btn');bb.textContent='Pay '+usd;bb.dataset.act='pay';bb.className='cta pay-btn';$('#bar-fine').textContent='USDT or card · Paid to '+FN+'\'s '+PVA+'';
+    $('#from').textContent=''+FULL+' sent you an invoice';document.querySelector('.pill .paid-only').textContent='Paid · Work has started';cur=D.paid?D.stage:1;window.scrollTo({top:0});
     later(print,500)}
   $('#replay').onclick=()=>location.reload();
   renderStages();

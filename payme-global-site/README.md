@@ -1,7 +1,6 @@
 # PayMe Global
 
-Designed invoices for Nigerian student freelancers. Clients abroad pay in USD or USDT into the freelancer's Cleva account, then follow the work stage by stage.
-Built for the Cleva × Tether Future of Payments Hackathon, UNILAG Edition (2026).
+Designed invoices for freelancers across Africa. Clients abroad pay in USD or USDT into the freelancer's own account (Cleva, Grey, Payoneer or a USDT wallet), then follow the work stage by stage.
 
 ## Pages
 | Route | What it is |
@@ -12,7 +11,7 @@ Built for the Cleva × Tether Future of Payments Hackathon, UNILAG Edition (2026
 | `/i/<code>` | Client page: the invoice prints, the client pays (mocked), tracks stages, requests updates |
 
 All pages share one demo workspace through `/api/state` (a Vercel serverless function storing JSON in Upstash Redis). Pages check for changes every 3 seconds, so a payment or update on one device shows up on the other.
-Payments are simulated and always succeed. **Reset demo** (in `/app` → Demo controls) restores the sample data for everyone.
+Payments are simulated and always succeed. In `/app` → Demo controls: **Load sample data** brings back the sample projects (your profile is kept), **Clear all data** starts empty.
 
 ## Deploy (about 15 minutes, no coding)
 1. **GitHub**: create a new repository called `payme-global` (Public, no README). On the empty repo page click **"uploading an existing file"**, drag in **everything inside this folder** (including the `api` folder), then click **Commit changes**.

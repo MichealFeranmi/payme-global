@@ -2,5 +2,10 @@
   "name": "payme-global",
   "private": true,
   "version": "1.0.0",
-  "engines": { "node": ">=18" }
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "test:e2e": "node scripts/e2e.js test-shots"
+  },
+  "devDependencies": { "playwright": "^1.48.0" }
 }

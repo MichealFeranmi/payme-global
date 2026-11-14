@@ -3,25 +3,60 @@
 // POST /api/state {action}  -> applies the action, returns the new state
 // Storage: Upstash Redis REST (added from Vercel's Storage tab). Falls back to memory when no store is connected.
 
+// Pitch-stage hardening (see SECURITY.md): every input is type-checked, length-capped and stripped of HTML;
+// the client page only ever receives its own invoice; database errors never reset the data; writes are rate-limited.
+
+const crypto = require('crypto');
 const KEY = 'payme:state:v1';
 const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 let MEM = null;
+const MEM_RL = new Map();
 
+// errors that are safe to show the user; anything else becomes a generic message
+class UserError extends Error {}
+const fail = m => { throw new UserError(m); };
+
+async function redis(cmd) {
+  const r = await fetch(URL_, { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN, 'content-type': 'application/json' }, body: JSON.stringify(cmd) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || j.error) throw new Error('Storage error: ' + (j.error || r.status));
+  return j.result;
+}
 async function load() {
   if (!URL_) return MEM;
-  const r = await fetch(URL_ + '/get/' + KEY, { headers: { Authorization: 'Bearer ' + TOKEN } });
-  const j = await r.json();
-  return j.result ? JSON.parse(j.result) : null;
+  const raw = await redis(['GET', KEY]); // throws on any storage problem, so a hiccup can never wipe the data
+  return raw == null ? null : JSON.parse(raw);
 }
 async function save(s) {
   if (!URL_) { MEM = s; return; }
-  await fetch(URL_ + '/set/' + KEY, { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN }, body: JSON.stringify(s) });
+  await redis(['SET', KEY, JSON.stringify(s)]);
+}
+// 40 writes per minute per visitor: plenty for a live demo, stops scripted flooding
+async function limited(ip) {
+  const k = 'payme:rl:' + ip + ':' + Math.floor(Date.now() / 60e3);
+  try {
+    if (!URL_) { const n = (MEM_RL.get(k) || 0) + 1; MEM_RL.set(k, n); if (MEM_RL.size > 5000) MEM_RL.clear(); return n > 40; }
+    const n = await redis(['INCR', k]); if (n === 1) await redis(['EXPIRE', k, 70]); return n > 40;
+  } catch (e) { return false; }
 }
 
 const H = 3600e3, D = 24 * H;
 const AB = '23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
-const code = () => Array.from({ length: 12 }, () => AB[Math.floor(Math.random() * AB.length)]).join('');
+const code = () => Array.from(crypto.randomBytes(12), x => AB[x % AB.length]).join('');
+
+// ---- input cleaning ----
+// plain text only: no tags, no control characters, trimmed and capped
+const txt = (v, max) => (typeof v === 'string' || typeof v === 'number' ? String(v) : '').replace(/[<>\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim().slice(0, max);
+const list = (v, n, max) => (Array.isArray(v) ? v : []).slice(0, n).map(x => txt(x, max)).filter(Boolean);
+const pairs = (v, n, max) => (Array.isArray(v) ? v : []).slice(0, n).filter(Array.isArray).map(x => [txt(x[0], max), txt(x[1], max)]).filter(x => x[0] || x[1]);
+const num = (v, lo, hi) => { const x = Number(v); return Number.isFinite(x) ? Math.min(hi, Math.max(lo, x)) : lo; };
+const PHOTO = /^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+={0,2}$/;
+const TRON = /^T[1-9A-HJ-NP-Za-km-z]{33}$/;
+const PROVIDERS = ['Cleva', 'Grey', 'Payoneer', 'USDT wallet'];
+const link = v => txt(v, 200).replace(/["'`\s\\]/g, '');
+const site = v => txt(v, 120).replace(/["'`\s\\]/g, '').replace(/^(javascript|data|vbscript):/i, '');
+const LIMITS = { projects: 150, timeline: 80, notes: 100 };
 const nowTs = () => Date.now();
 const first = n => String(n || '').split(' ')[0];
 
@@ -35,7 +70,7 @@ function seedRaw() {
   const DEF = ['Payment received', 'Kick-off', 'First concepts', 'Refinement', 'Final files'];
   return {
     v: 1,
-    profile: { name: 'Tobi Adeyemi', head: 'UI/UX Designer', campus: 'University of Lagos', site: 'behance.net/tobiadeyemi', verified: true, acct: '4821' },
+    profile: { name: 'Tobi Adeyemi', head: 'UI/UX Designer', campus: 'Lagos, Nigeria', site: 'behance.net/tobiadeyemi', verified: true, acct: '4821', payout: { provider: 'Cleva', mode: 'bank', wallet: '' }, custom: false },
     nid: 20,
     projects: [
       { id: 'northwind', code: 'k3Rf9xQ2mT7a', no: 'PMG-0042', title: 'Northwind mobile app redesign', client: 'Daniel Weber', co: 'Northwind Studio', city: 'Berlin, DE', email: 'daniel@northwind.studio',
@@ -107,84 +142,141 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const dur = ms => { const m = Math.max(1, Math.round(ms / 60e3)); return m < 60 ? m + 'm' : Math.floor(m / 60) + 'h ' + (m % 60) + 'm'; };
 const find = (s, b) => s.projects.find(p => (b.id && p.id === b.id) || (b.code && p.code === b.code));
 
+const tl = (p, e) => { p.tl.unshift(e); p.tl.length = Math.min(p.tl.length, LIMITS.timeline); };
+const DEF_STAGES = ['Payment received', 'Kick-off', 'First concepts', 'Refinement', 'Final files'];
+
+function cleanProfile(cur, inp) {
+  const out = { ...cur };
+  const T = { name: 80, head: 80, campus: 80, skill: 80, bio: 400 };
+  for (const k in T) if (k in inp) out[k] = txt(inp[k], T[k]);
+  if ('site' in inp) out.site = site(inp.site);
+  if ('verified' in inp) out.verified = inp.verified !== false;
+  if ('custom' in inp) out.custom = !!inp.custom;
+  if ('photo' in inp) { const ph = inp.photo; if (typeof ph === 'string' && ph.length <= 400e3 && PHOTO.test(ph)) out.photo = ph; else delete out.photo; }
+  if ('payout' in inp) {
+    const po = inp.payout && typeof inp.payout === 'object' ? inp.payout : {};
+    const mode = ['cleva', 'bank', 'usdt'].includes(po.mode) ? po.mode : 'cleva';
+    const wallet = typeof po.wallet === 'string' && TRON.test(po.wallet.trim()) ? po.wallet.trim() : '';
+    if (mode === 'usdt' && !wallet) fail('Enter a valid TRC-20 wallet address');
+    out.payout = { provider: PROVIDERS.includes(po.provider) ? po.provider : (mode === 'usdt' ? 'USDT wallet' : 'Cleva'), mode, wallet: mode === 'usdt' ? wallet : '' };
+  }
+  return out;
+}
+
 function apply(s, b) {
   const n = nowTs();
-  const note = (k, p, html, sub) => s.notes.unshift({ id: s.nid++, k, p, html, sub, ts: n, unread: true });
+  if (!b || typeof b !== 'object') fail('Bad request');
+  const note = (k, p, html, sub) => { s.notes.unshift({ id: s.nid++, k, p, html, sub, ts: n, unread: true }); s.notes.length = Math.min(s.notes.length, LIMITS.notes); };
+
   switch (b.action) {
-    case 'reset': return seed();
-    case 'profile': { const allowed = ['name', 'head', 'campus', 'site', 'verified', 'photo', 'skill']; for (const k of allowed) if (k in (b.profile || {})) s.profile[k] = b.profile[k];
-      if (s.profile.photo && s.profile.photo.length > 400e3) delete s.profile.photo; return s; }
+    // sample data for demos, keeping the freelancer's own profile when they have one
+    case 'sample': { const fresh = seed(); if (s.profile && s.profile.custom) fresh.profile = s.profile; fresh.v = s.v; return fresh; }
+    case 'fresh': { s.projects = []; s.notes = []; return s; }
+    case 'profile': { s.profile = cleanProfile(s.profile || {}, b.profile && typeof b.profile === 'object' ? b.profile : {}); return s; }
     case 'create': {
-      const i = b.invoice || {}; const c = code(); const id = 'p' + c.slice(0, 6).toLowerCase();
-      const items = (i.items || []).slice(0, 20).map(x => [String(x[0] || 'Item').slice(0, 120), Math.max(0, +x[1] || 0), Math.max(0, +x[2] || 0)]);
+      if (s.projects.length >= LIMITS.projects) fail('This demo workspace is full. Use "Clear all data" in Demo controls.');
+      const i = b.invoice && typeof b.invoice === 'object' ? b.invoice : {}; const c = code(); const id = 'p' + c.slice(0, 6).toLowerCase();
+      const items = (Array.isArray(i.items) ? i.items : []).slice(0, 20).filter(Array.isArray).map(x => [txt(x[0], 120) || 'Item', num(x[1], 0, 10000), num(x[2], 0, 1e6)]);
       const amt = items.reduce((t, x) => t + x[1] * x[2], 0);
-      const stages = (i.stages && i.stages.length === 5) ? i.stages : ['Payment received', 'Kick-off', 'First concepts', 'Refinement', 'Final files'];
+      const st = list(i.stages, 5, 60); const stages = st.length === 5 ? st : DEF_STAGES.slice();
+      const net = Math.round(num(i.net || 14, 1, 120));
       const no = 'PMG-' + String(46 + s.projects.length).padStart(4, '0');
-      s.projects.unshift({ id, code: c, no, title: String(i.title || 'Untitled project').slice(0, 120), client: String(i.client || 'Client').slice(0, 80), co: String(i.co || '').slice(0, 80), city: String(i.city || '').slice(0, 60),
-        email: String(i.email || '').slice(0, 120), desc: String(i.desc || '').slice(0, 400), items, niche: (i.niche || []).slice(0, 4), chips: (i.chips || []).slice(0, 8), terms: (i.terms || []).slice(0, 6), sign: String(i.sign || '').slice(0, 160),
-        net: +i.net || 14, issuedTs: n, dueTs: n + (+i.net || 0) * D, sentTs: n, color: /^#[0-9A-F]{6}$/i.test(i.color) ? i.color : '#2E5BFF', split: i.split === 'half' ? 'half' : 'full',
+      s.projects.unshift({ id, code: c, no, title: txt(i.title, 120) || 'Untitled project', client: txt(i.client, 80) || 'Client', co: txt(i.co, 80), city: txt(i.city, 60),
+        email: txt(i.email, 120), desc: txt(i.desc, 400), items, niche: pairs(i.niche, 4, 40), chips: list(i.chips, 8, 40), terms: list(i.terms, 6, 200), sign: txt(i.sign, 160),
+        net, issuedTs: n, dueTs: n + net * D, sentTs: n, color: /^#[0-9A-F]{6}$/i.test(i.color) ? i.color : '#2E5BFF', split: i.split === 'half' ? 'half' : 'full',
         status: 'sent', stage: 0, stages, subs: ['', '', '', '', ''], paid: null, updatedTs: n, req: null, tl: [], amt });
       s.lastCode = c; return s;
     }
-          case 'read': { s.notes.forEach(x => { if (b.all || x.id === b.note) x.unread = false; }); return s; }
+    case 'read': { s.notes.forEach(x => { if (b.all || x.id === b.note) x.unread = false; }); return s; }
   }
-  const p = find(s, b); if (!p) throw new Error('Project not found');
+  // an invoice code only unlocks the client actions; freelancer actions need the project id
+  const p = ['pay', 'request'].includes(b.action) ? find(s, b) : find(s, { id: b.id }); if (!p) fail('Project not found');
   const fn = first(p.client);
   switch (b.action) {
     case 'pay': {
       if (p.paid) return s;
+      if (p.status === 'draft') fail('This invoice has not been sent yet');
       const m = b.method === 'card' ? 'card' : 'usdt';
       p.paid = { ts: n, method: m, tx: m === 'usdt' ? 'Tron · ' + code().slice(0, 6).toLowerCase() + '…' + code().slice(0, 8).toLowerCase() : 'Visa •••• 4242 · Auth ' + code().slice(0, 6).toUpperCase() };
       p.status = 'progress'; p.stage = 1; p.subs[0] = 'Paid'; p.subs[1] = 'Started today'; p.updatedTs = n;
       const amt = m === 'usdt' ? usdt(p.amt) : money(p.amt) + ' by card';
-      p.tl.unshift({ k: 'pay', text: fn + ' paid ' + amt, ts: n });
-      p.tl.unshift({ k: 'stage', text: 'Moved to ' + p.stages[1], ts: n + 1 });
-      p.tl.unshift({ k: 'update', text: 'Payment received, thank you ' + fn + '. I\'m starting today and will post the first update soon.', ts: n + 2, auto: true });
-      note('pay', p.id, '<b>Payment received:</b> ' + esc(amt) + ' from ' + esc(p.client), 'Settled to Cleva •••• 4821 · ' + esc(p.title));
+      tl(p, { k: 'pay', text: fn + ' paid ' + amt, ts: n });
+      tl(p, { k: 'stage', text: 'Moved to ' + p.stages[1], ts: n + 1 });
+      tl(p, { k: 'update', text: 'Payment received, thank you ' + fn + '. I\'m starting today and will post the first update soon.', ts: n + 2, auto: true });
+      const pv = (s.profile.payout && s.profile.payout.provider) || 'Cleva';
+      note('pay', p.id, '<b>Payment received:</b> ' + esc(amt) + ' from ' + esc(p.client), 'Settled to ' + esc(pv) + ' •••• 4821 · ' + esc(p.title));
       return s;
     }
     case 'request': {
-      if (!p.paid) throw new Error('Invoice not paid yet');
-      if (p.req) throw new Error('A request is already open');
-      p.req = { q: String(b.q || 'How is it going?').slice(0, 140), note: String(b.note || '').slice(0, 300), ts: n }; p.updatedTs = n;
+      if (!p.paid) fail('Invoice not paid yet');
+      if (p.req) fail('A request is already open');
+      p.req = { q: txt(b.q, 140) || 'How is it going?', note: txt(b.note, 300), ts: n }; p.updatedTs = n;
       note('ask', p.id, '<b>' + esc(p.client) + '</b> asked for an update', '"' + esc(p.req.q) + '" · ' + esc(p.title));
       return s;
     }
     case 'post': {
-      const text = String(b.text || '').trim().slice(0, 1000); if (!text) throw new Error('Write an update first');
-      const link = String(b.link || '').trim().slice(0, 200) || null;
+      const text = txt(b.text, 1000); if (!text) fail('Write an update first');
+      const lk = link(b.link) || null;
       if (b.advance) advance(p, n);
-      if (p.req) { const d = dur(n - p.req.ts); p.tl.unshift({ k: 'answer', q: p.req.q, text, link, ts: n, fast: 'Replied in ' + d }); p.answered = 'Answered. ' + fn + ' got your reply ' + d + ' after asking.'; p.req = null;
+      if (p.req) { const d = dur(n - p.req.ts); tl(p, { k: 'answer', q: p.req.q, note: p.req.note || '', text, link: lk, ts: n, fast: 'Replied in ' + d }); p.answered = 'Answered. ' + fn + ' got your reply ' + d + ' after asking.'; p.req = null;
         s.notes.forEach(x => { if (x.p === p.id && x.k === 'ask') x.unread = false; }); }
-      else { p.answered = null; p.tl.unshift({ k: 'update', text, link, ts: n }); }
+      else { p.answered = null; tl(p, { k: 'update', text, link: lk, ts: n }); }
       p.updatedTs = n; return s;
     }
     case 'stage': {
       if (b.dir === 'next') advance(p, n);
-      if (b.dir === 'back' && p.stage > 1) { p.tl.unshift({ k: 'stage', text: 'Moved back to ' + p.stages[p.stage - 1], ts: n }); p.stage--; if (p.status === 'review') p.status = 'progress'; }
-      if (b.dir === 'deliver') { p.status = 'delivered'; p.stage = 4; p.deliveredTs = n; p.subs[4] = 'Delivered'; p.tl.unshift({ k: 'stage', text: 'Marked as delivered', ts: n }); }
+      if (b.dir === 'back' && p.stage > 1) { tl(p,{ k: 'stage', text: 'Moved back to ' + p.stages[p.stage - 1], ts: n }); p.stage--; if (p.status === 'review') p.status = 'progress'; }
+      if (b.dir === 'deliver') { p.status = 'delivered'; p.stage = 4; p.deliveredTs = n; p.subs[4] = 'Delivered'; tl(p, { k: 'stage', text: 'Marked as delivered', ts: n }); }
       p.updatedTs = n; return s;
     }
-
   }
-  throw new Error('Unknown action');
+  fail('Unknown action');
 }
 function advance(p, n) {
   if (p.stage >= p.stages.length - 1) return;
   p.subs[p.stage] = 'Done'; p.stage++; p.subs[p.stage] = 'Started today';
   if (p.stage === p.stages.length - 1 && p.status === 'progress') p.status = 'review';
-  p.tl.unshift({ k: 'stage', text: 'Moved to ' + p.stages[p.stage], ts: n });
+  tl(p, { k: 'stage', text: 'Moved to ' + p.stages[p.stage], ts: n });
 }
+
+// ---- what each kind of visitor gets back ----
+const noEmail = p => { const { email, ...rest } = p; return rest; };
+// the freelancer dashboard (no login yet, see SECURITY.md): everything except client emails
+const fullView = s => ({ ...s, projects: s.projects.map(noEmail), now: nowTs() });
+// a client holding one invoice link: that invoice and the freelancer's public card, nothing else
+function clientView(s, c) {
+  const p = s.projects.find(x => x.code === c && x.status !== 'draft');
+  const pr = s.profile || {};
+  return { v: s.v, now: nowTs(), projects: p ? [noEmail(p)] : [],
+    profile: { name: pr.name, head: pr.head, campus: pr.campus, site: pr.site, verified: pr.verified, photo: pr.photo, custom: pr.custom,
+      payout: { provider: pr.payout && pr.payout.provider, mode: pr.payout && pr.payout.mode } } };
+}
+const CLIENT_ACTIONS = ['pay', 'request'];
+const isCode = c => typeof c === 'string' && /^[A-Za-z0-9]{6,20}$/.test(c);
 
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
   try {
+    if (req.method !== 'GET' && req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+    const q = (req.query && req.query.code) || new URL(req.url || '/', 'http://x').searchParams.get('code');
+    if (req.method === 'POST') {
+      if (+(req.headers && req.headers['content-length']) > 600e3) return res.status(413).json({ error: 'That is too large to save' });
+      const ip = String((req.headers && (req.headers['x-forwarded-for'] || req.headers['x-real-ip'])) || (req.socket && req.socket.remoteAddress) || 'local').split(',')[0].trim();
+      if (await limited(ip)) return res.status(429).json({ error: 'Too many changes at once. Wait a minute and try again.' });
+    }
     let s = await load(); if (!s) { s = seed(); await save(s); }
-    if (req.method === 'GET') { s.now = nowTs(); return res.status(200).json(s); }
-    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-    const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+    if (req.method === 'GET') return res.status(200).json(isCode(q) ? clientView(s, q) : fullView(s));
+    let b; try { b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {}); } catch (e) { fail('Bad request'); }
+    // a client page can only pay or ask on its own invoice, and only sees that invoice back
+    const asClient = isCode(b && b.code) && CLIENT_ACTIONS.includes(b.action);
+    if (asClient) b = { action: b.action, code: b.code, method: b.method, q: b.q, note: b.note };
     s = apply(s, b); s.v = (s.v || 0) + 1; await save(s);
-    s.now = nowTs(); return res.status(200).json(s);
-  } catch (e) { return res.status(400).json({ error: e.message }); }
+    return res.status(200).json(asClient ? clientView(s, b.code) : fullView(s));
+  } catch (e) {
+    if (e instanceof UserError) return res.status(400).json({ error: e.message });
+    console.error(e);
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
+  }
 };
 module.exports.apply = apply; module.exports.seed = seed;
