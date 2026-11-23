@@ -5,7 +5,7 @@
 </style></head><body>
 <title>PayMe Freelancer App</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: desktop = floating sidebar + content; phones = top bar + bottom tabs. Each screen has one focal point:
@@ -36,7 +36,7 @@ button{font:inherit;color:inherit;cursor:pointer}a{color:inherit}
 .mono{font-family:var(--mono)}h1,h2,h3{text-wrap:balance}
 input,textarea,select{font-size:max(16px,1em)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
-.btn{border:0;border-radius:14px;height:46px;padding:0 18px;font-size:15px;font-weight:600;letter-spacing:-.02em;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;white-space:nowrap;transition:transform .12s}
+.btn{border:0;border-radius:14px;height:46px;padding:0 18px;font-size:15px;font-weight:600;letter-spacing:0;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;white-space:nowrap;transition:transform .12s}
 .btn:active{transform:scale(.98)}
 .btn.ink{background:var(--ink);color:var(--bg)}.btn.sig{background:var(--signal);color:#0F0F0F}.btn.ghost{background:var(--surface);color:var(--ink)}
 .btn.line{background:var(--raised);border:1px solid var(--line);color:var(--ink)}.btn.text{background:none;color:var(--ink2);padding:0 8px}
@@ -57,7 +57,7 @@ input,textarea,select{font-size:max(16px,1em)}
 /* shell */
 .app{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:236px minmax(0,1fr);gap:24px;align-items:start}
 .side{position:sticky;top:12px;height:calc(100vh - 24px);min-height:560px;display:flex;flex-direction:column;gap:4px;background:var(--raised);border:1px solid var(--line);border-radius:28px;padding:14px 12px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:-.04em;font-size:16px;white-space:nowrap;padding:4px 8px 14px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:0;font-size:16px;white-space:nowrap;padding:4px 8px 14px}
 .brand svg{width:24px;height:24px;flex:none}
 .nav a,.nav button{display:flex;align-items:center;gap:10px;border:0;background:none;width:100%;text-align:left;padding:9px 10px;border-radius:12px;font-size:14.5px;color:var(--ink2);text-decoration:none}
 .nav a svg,.nav button svg{width:18px;height:18px;flex:none}
@@ -71,7 +71,7 @@ input,textarea,select{font-size:max(16px,1em)}
 .demo button:hover{background:var(--surface);color:var(--ink)}
 .demo button i{width:6px;height:6px;border-radius:50%;background:var(--ink3);flex:none}
 .me{display:flex;align-items:center;gap:10px;padding:10px 6px 2px;border-top:1px solid var(--line);margin-top:6px}
-.me div{min-width:0}.me b{display:block;font-size:14px;font-weight:600;letter-spacing:-.02em}.me small{font-size:11.5px;color:var(--mint-ink)}
+.me div{min-width:0}.me b{display:block;font-size:14px;font-weight:600;letter-spacing:0}.me small{font-size:11.5px;color:var(--mint-ink)}
 .mtop,.tabs,.mdemo{display:none}
 main{min-width:0;padding-top:6px}
 .view{max-width:1040px;display:grid;gap:22px;animation:in .35s cubic-bezier(.2,.8,.2,1) both}
@@ -79,14 +79,14 @@ main{min-width:0;padding-top:6px}
 
 /* page header */
 .ph{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.ph h1{margin:4px 0 0;font-size:clamp(30px,4vw,44px);font-weight:500;letter-spacing:-.055em;line-height:.95}
+.ph h1{margin:4px 0 0;font-size:clamp(30px,4vw,44px);font-weight:500;letter-spacing:-0.03em;line-height:1.04}
 .ph .sub{margin-top:8px;color:var(--ink2);font-size:14.5px}
 .ph .acts{display:flex;gap:8px;flex-wrap:wrap}
 
 /* attention: open requests (the one signal-coloured thing on the dashboard) */
 .req{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--raised);border:1px solid var(--line);box-shadow:0 1px 2px rgba(15,15,15,.04),0 12px 32px -20px rgba(15,15,15,.18);border-radius:22px;padding:16px 16px 16px 18px}
 .req .av{width:44px;height:44px;background:var(--surface);color:var(--ink)}
-.req b{display:block;font-weight:600;letter-spacing:-.02em;font-size:16px}
+.req b{display:block;font-weight:600;letter-spacing:0;font-size:16px}
 .req q{display:block;font-size:15px;margin-top:2px;quotes:"“" "”"}
 .req small{display:block;font-size:12.5px;color:var(--ink2);margin-top:4px}.req b::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--signal);margin-right:8px;vertical-align:2px;box-shadow:0 0 0 4px color-mix(in srgb,var(--signal) 14%,transparent)}
 .req .more{grid-column:1/-1;font-size:12.5px;color:var(--ink2);border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
@@ -96,11 +96,11 @@ main{min-width:0;padding-top:6px}
 /* stats: one hero number, two supporting */
 .stats{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:12px}
 .stat{padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.stat .n{font-size:30px;font-weight:500;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n{font-size:30px;font-weight:500;letter-spacing:-0.02em;line-height:1;font-variant-numeric:tabular-nums}
 .stat.hero{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .stat.hero .eyebrow{color:color-mix(in srgb,var(--bg) 60%,transparent)}
-.stat.hero .n{font-size:clamp(44px,5.4vw,64px);letter-spacing:-.06em;margin-top:auto}
-.stat.hero .n small{font-size:.4em;letter-spacing:-.02em;opacity:.6}
+.stat.hero .n{font-size:clamp(44px,5.4vw,64px);letter-spacing:-0.035em;margin-top:auto}
+.stat.hero .n small{font-size:.4em;letter-spacing:-0.01em;opacity:.6}
 .stat .d{font-size:13px;color:var(--ink3)}
 .stat.hero .d{color:color-mix(in srgb,var(--bg) 65%,transparent);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .stat.hero .d b{color:var(--mint);font-weight:500}
@@ -110,7 +110,7 @@ main{min-width:0;padding-top:6px}
 
 /* projects */
 .sech{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.sech h2{margin:0;font-size:22px;font-weight:500;letter-spacing:-.04em}
+.sech h2{margin:0;font-size:22px;font-weight:500;letter-spacing:-0.01em}
 .seg{display:inline-grid;grid-auto-flow:column;background:var(--surface);border-radius:12px;padding:3px}
 .seg button{border:0;background:none;padding:6px 12px;border-radius:9px;color:var(--ink2);font-size:13.5px;white-space:nowrap}
 .seg button[aria-pressed="true"]{background:var(--raised);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -119,7 +119,7 @@ main{min-width:0;padding-top:6px}
 .prow:hover{background:var(--surface)}
 .prow+.prow{box-shadow:0 -1px 0 var(--line)}
 .prow:hover+.prow,.prow:hover{box-shadow:none}
-.prow .t b{display:block;font-weight:500;font-size:15px;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prow .t b{display:block;font-weight:500;font-size:15px;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .prow .t small{font-size:12.5px;color:var(--ink3)}
 .prow .amt{text-align:right;font-weight:500;font-variant-numeric:tabular-nums;font-size:15px}
 .prow .amt small{display:block;font-size:11.5px;color:var(--ink3);font-weight:400}
@@ -136,7 +136,7 @@ main{min-width:0;padding-top:6px}
 .vig .bell{transform-origin:60px 30px;animation:ring 4s ease-in-out infinite}
 @keyframes ring{0%,70%,100%{transform:rotate(0)}74%{transform:rotate(12deg)}80%{transform:rotate(-10deg)}86%{transform:rotate(6deg)}92%{transform:rotate(-3deg)}}
 .vig .zz{animation:pulse 2s ease-in-out infinite}@keyframes pulse{50%{opacity:.35;transform:scale(.8);transform-origin:82px 30px}}
-.empty h3{margin:0;font-size:26px;font-weight:500;letter-spacing:-.045em}
+.empty h3{margin:0;font-size:26px;font-weight:500;letter-spacing:-0.01em}
 .empty p{margin:0;color:var(--ink2);max-width:40ch}
 .steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;width:100%;max-width:640px;text-align:left}
 .steps3 div{background:var(--surface);border-radius:16px;padding:14px;font-size:13px;color:var(--ink2)}
@@ -149,12 +149,12 @@ main{min-width:0;padding-top:6px}
 .col{display:grid;gap:16px;min-width:0}
 .pad{padding:20px}
 .cardh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}
-.cardh h3{margin:0;font-size:18px;font-weight:500;letter-spacing:-.035em}
+.cardh h3{margin:0;font-size:18px;font-weight:500;letter-spacing:0}
 .preq{border:1px solid var(--line);background:var(--raised);border-radius:24px;padding:18px 18px 4px}
 .preq .top{display:flex;gap:12px;align-items:flex-start}
 .preq .top .av{background:var(--raised);color:var(--ink)}
 .preq b{font-weight:600}.preq .when{font-size:12.5px;color:var(--ink2)}.preq .when::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);margin-right:7px;vertical-align:1px}
-.preq blockquote{margin:10px 0 0;font-size:18px;letter-spacing:-.02em;line-height:1.3}
+.preq blockquote{margin:10px 0 0;font-size:18px;letter-spacing:0;line-height:1.3}
 .preq .note{margin-top:6px;color:var(--ink2);font-size:14px}
 .preq .clock{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink2);border-top:1px solid var(--line);margin-top:14px;padding:10px 0}
 .compose{display:grid;gap:10px}
@@ -190,7 +190,7 @@ main{min-width:0;padding-top:6px}
 .stg .done .dot svg{width:12px;height:12px}
 .stg .now .dot{border-color:var(--ink)}
 .stg .now .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink)}
-.stg .n{font-size:14.5px;font-weight:500;letter-spacing:-.015em}
+.stg .n{font-size:14.5px;font-weight:500;letter-spacing:0}
 .stg .todo .n{color:var(--ink3);font-weight:400}
 .stg .s{font-size:12px;color:var(--ink3)}
 .stg .now .s{color:var(--ink)}
@@ -204,7 +204,7 @@ main{min-width:0;padding-top:6px}
 .linkbox{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:12px;padding:6px 6px 6px 12px;margin-top:12px}
 .linkbox code{font-family:var(--mono);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wait{display:grid;gap:14px}
-.wait .big{font-size:clamp(44px,6vw,64px);font-weight:500;letter-spacing:-.06em;line-height:.9}
+.wait .big{font-size:clamp(44px,6vw,64px);font-weight:500;letter-spacing:-0.035em;line-height:1.00}
 .wait p{margin:0;color:var(--ink2)}
 .wait .acts{display:flex;gap:8px;flex-wrap:wrap}
 .locked{display:flex;gap:10px;align-items:center;color:var(--ink3);font-size:13.5px;background:var(--surface);border-radius:14px;padding:12px 14px}
@@ -230,11 +230,11 @@ main{min-width:0;padding-top:6px}
 /* client states */
 .phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .phone{background:var(--bg);border:1px solid var(--line);border-radius:32px;padding:14px;display:grid;gap:12px;align-content:start;min-height:440px}
-.phone .pbar{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:-.04em;font-size:14px;background:var(--raised);border:1px solid var(--line);border-radius:16px;padding:8px 10px}
+.phone .pbar{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:0;font-size:14px;background:var(--raised);border:1px solid var(--line);border-radius:16px;padding:8px 10px}
 .phone .pbar svg{width:20px;height:20px}
 .phone .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:center}
 .phone .panel{background:var(--raised);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;gap:12px}
-.phone h4{margin:0;font-size:22px;font-weight:500;letter-spacing:-.045em;line-height:1.05}
+.phone h4{margin:0;font-size:22px;font-weight:500;letter-spacing:-0.01em;line-height:1.05}
 .phone p{margin:0;font-size:13.5px;color:var(--ink2)}
 .phone .err{display:flex;gap:10px;background:var(--bad-bg);color:var(--bad-ink);border-radius:14px;padding:10px 12px;font-size:13px}
 .phone .err svg{flex:none;margin-top:2px}
@@ -276,6 +276,139 @@ main{min-width:0;padding-top:6px}
   .hide-m{display:none!important}.preq .clock .mono{white-space:nowrap}.ph .acts{width:100%}.ph .acts .btn{flex:1}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== Round 3: calmer layout. More air, fewer boxes, one focal point per screen ===== */
+body{font-size:15px;line-height:1.5;padding-block:20px 64px}
+.app{max-width:1280px;grid-template-columns:232px minmax(0,1fr);gap:56px}
+main{padding-top:20px}
+.view{max-width:1000px;gap:40px}
+.lab{font-size:13px;color:var(--ink3);font-weight:500}
+.date{display:block;font-size:14px;color:var(--ink3)}
+.eyebrow{font-family:var(--sans);font-size:12.5px;letter-spacing:0;text-transform:none;font-weight:500}
+.ph h1{margin-top:6px;font-size:clamp(32px,3.6vw,44px);letter-spacing:-0.025em;line-height:1.1}
+.card{border-color:color-mix(in srgb,var(--line) 70%,transparent);border-radius:20px}
+
+/* sidebar: flat on the page, no box */
+.side{background:none;border:0;border-radius:0;padding:8px 0 4px;gap:2px;top:20px;height:calc(100vh - 40px)}
+.brand{padding:4px 12px 28px}
+.nav{display:grid;gap:2px}
+.nav a,.nav button{padding:10px 12px;font-size:15px;border-radius:12px}
+.nav a:hover,.nav button:hover{background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--ink)}
+.nav [aria-current="page"]{background:var(--raised);box-shadow:0 0 0 1px var(--line);font-weight:500}
+.me{border-top:0;padding:12px;margin-top:8px;border-radius:14px}
+.me small{color:var(--ink3)}
+/* demo tools: tucked away, opened when presenting */
+details.demo{border:0;border-radius:14px;padding:0;display:block}
+details.demo summary{list-style:none;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;color:var(--ink3);cursor:pointer}
+details.demo summary::-webkit-details-marker{display:none}
+details.demo summary svg{width:16px;height:16px;flex:none}
+details.demo summary .chev{width:12px;height:12px;margin-left:auto;transition:transform .2s}
+details.demo[open] summary .chev{transform:rotate(180deg)}
+details.demo summary:hover{background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--ink)}
+details.demo .dbody{display:grid;gap:2px;padding:4px 0 8px 14px;margin-left:19px;border-left:1px solid var(--line)}
+details.demo .dbody button{font-size:13.5px;padding:8px 10px}
+details.demo .dbody button[disabled]{opacity:.4;cursor:default;background:none}
+
+/* attention: the one open request */
+.req{padding:24px 24px 24px 26px;gap:18px;border-radius:20px;box-shadow:0 1px 2px rgba(15,15,15,.03),0 18px 40px -28px rgba(15,15,15,.22)}
+.req .av{border-radius:50%}
+.req b{font-size:16.5px}
+.req q{font-size:16px;margin-top:6px}
+.req small{margin-top:6px;font-size:13px;color:var(--ink3)}
+.allclear{border-radius:16px;padding:16px 20px;border-color:color-mix(in srgb,var(--line) 70%,transparent)}
+
+/* money: one panel, three figures */
+.stats{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:0;padding:8px}
+.stats .stat{background:none;border:0;padding:22px 24px;gap:10px;text-align:left;color:inherit;font:inherit;border-radius:14px}
+.stats button.stat:hover{background:color-mix(in srgb,var(--surface) 60%,transparent)}
+.stats .stat+.stat{box-shadow:-1px 0 0 0 var(--line)}
+.stats .stat:hover+.stat,.stats .stat+.stat:hover{box-shadow:none}
+.stat .n{font-size:32px;letter-spacing:-0.02em}
+.stat.hero{background:none;color:var(--ink);border:0}
+.stat.hero .n{font-size:clamp(44px,4.6vw,56px);letter-spacing:-0.03em;margin-top:2px}
+.stat.hero .n small{font-size:.36em;opacity:.5;letter-spacing:0;font-weight:500}
+.stat .d,.stat.hero .d{font-size:13.5px;color:var(--ink3);display:block}
+.stat.hero .d b{color:var(--mint-ink);font-weight:500}
+.eye{margin:-8px -8px -8px 0;background:none;color:var(--ink3)}
+.eye:hover{background:var(--surface);color:var(--ink)}
+
+/* projects */
+.projects{display:grid;gap:16px}
+.sech h2{font-size:20px;font-weight:500;letter-spacing:-0.01em}
+.seg{background:none;padding:0;gap:4px}
+.seg button{padding:7px 14px;border-radius:999px;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--raised);box-shadow:0 0 0 1px var(--line)}
+.plist{padding:8px}
+.prow{grid-template-columns:40px minmax(0,1.7fr) minmax(0,1fr) 140px 96px;gap:20px;padding:18px 16px;border-radius:14px}
+.prow+.prow{box-shadow:0 -1px 0 color-mix(in srgb,var(--line) 70%,transparent)}
+.prow .av{border-radius:50%;background:var(--surface);color:var(--ink2);font-size:12px}
+.prow .t b{font-size:15.5px}
+.prow .t small{display:block;margin-top:3px;font-size:13px}
+.prow .amt{font-size:15.5px}
+.prow .amt small{margin-top:3px;font-size:12.5px}
+.mini{gap:8px;font-size:13px}
+.bars{gap:4px}.bars i{height:3px}
+/* status: one neutral chip, colour only in the dot */
+.chip,.chip.sent,.chip.progress,.chip.review,.chip.delivered,.chip.paid{background:none;color:var(--ink2);box-shadow:inset 0 0 0 1px var(--line);font-size:12.5px;padding:5px 11px}
+.chip.draft{box-shadow:none;border:1px dashed var(--line)}
+.chip i{width:7px;height:7px}
+.chip.sent i{background:#E0A100}.chip.progress i{background:var(--ink)}.chip.review i{background:#6B55E0}.chip.delivered i,.chip.paid i{background:var(--mint)}.chip.draft i{background:var(--ink3)}
+
+/* project page */
+.back{font-size:14px;margin-bottom:-16px}
+.pgrid{grid-template-columns:minmax(0,1fr) 336px;gap:24px}
+.col{gap:24px}.col>*{min-width:0}
+.sacts .btn{white-space:normal;height:auto;min-height:46px;padding-block:11px;text-align:center}
+.kv b{white-space:normal}
+/* earnings dividers: straight hairlines, inset from the panel edge */
+.stats .stat{position:relative}
+.stats .stat+.stat,.stats .stat:hover+.stat,.stats .stat+.stat:hover{box-shadow:none}
+.stats .stat+.stat::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:1px;background:var(--line)}
+.stats .stat:hover::before,.stats .stat:hover+.stat::before{opacity:0}
+.mini>span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pad{padding:28px}
+.cardh{margin-bottom:20px}
+.cardh h3{font-size:18px}
+.card.asking{box-shadow:0 1px 2px rgba(15,15,15,.03),0 18px 40px -28px rgba(15,15,15,.22)}
+.ask{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+.ask .av{width:40px;height:40px;border-radius:50%}
+.askm{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:13.5px;color:var(--ink3)}
+.askm b{color:var(--ink);font-weight:600}
+.askm .pend{display:inline-flex;align-items:center;gap:6px;color:var(--ink2)}
+.askm .pend::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px color-mix(in srgb,var(--signal) 14%,transparent)}
+.ask blockquote{margin:8px 0 0;font-size:20px;line-height:1.35;letter-spacing:-0.01em}
+.ask .note{margin-top:8px;color:var(--ink2);font-size:14.5px}
+.compose{gap:12px}
+.tl li{gap:14px;padding-bottom:24px}
+.tl .body{font-size:15px;margin-top:4px;line-height:1.5}
+.stg li{padding-bottom:18px}
+.kv{gap:14px}
+.kv div{font-size:14px}
+.answered{border-radius:16px;padding:16px 20px}
+
+/* notifications */
+.nrow{padding:18px;gap:14px}
+.ngroup{gap:4px}
+
+@media (max-width:899px){
+  body{padding-block:10px 104px}
+  .app{grid-template-columns:minmax(0,1fr);gap:0}
+  .pgrid{grid-template-columns:minmax(0,1fr)}
+  main{padding-top:0}
+  .view{gap:28px}
+  .stats{grid-template-columns:1fr 1fr;padding:6px}
+  .stats .stat{padding:18px}
+  .stats .stat.hero{grid-column:1/-1}
+  .stats .stat.hero::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:1px;background:var(--line)}
+  .stats .stat.hero+.stat::before{display:none}
+  .stat .n{font-size:26px}
+  .req{padding:20px}
+  .prow{grid-template-columns:40px minmax(0,1fr) auto;padding:16px 12px;gap:6px 14px}
+  .pad{padding:22px}
+  .seg{overflow-x:auto;max-width:100%}
+  .back{margin-bottom:-8px}
+  details.mdemo{background:var(--raised);box-shadow:0 0 0 1px var(--line);padding:4px}
+}
 </style>
 
 <div class="app">
@@ -283,7 +416,7 @@ main{min-width:0;padding-top:6px}
     <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M14 8h22a20 20 0 0 1 0 40H26v2a6 6 0 0 1-6 6h-6a6 6 0 0 1-6-6V14a6 6 0 0 1 6-6z"/><circle fill="#FF5B1F" cx="36" cy="28" r="9"/></svg>PayMe Global</div>
     <nav class="nav" id="nav"></nav>
     <div class="sgap"></div>
-    <div class="demo" id="demo-d"></div>
+    <details class="demo" id="demo-d"></details>
     <div class="me" id="me"></div>
   </aside>
 
@@ -358,8 +491,8 @@ const seed=()=>({
 });
 let S={projects:[],notes:[],empty:false,filter:'all'},nid=10,VER=-1,LASTNOTE=0,BOOT=true;
 // ===== live data (shared with the client pages through /api/state) =====
-const API={get:()=>fetch('/api/state',{cache:'no-store'}).then(r=>r.json()),
- do:(a,b)=>fetch('/api/state',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:a,...(b||{})})}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||'Something went wrong');return j})};
+const API={get:async()=>{const c=API._c;const r=await fetch('/api/state'+(c?'?since='+c.v:''),{cache:'no-store'}).then(r=>r.json());if(r.same&&c)return {...c,now:r.now};API._c=r;return r},
+ do:(a,b)=>fetch('/api/state',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:a,...(b||{})})}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||'Something went wrong');API._c=j;return j})};
 const TZ={timeZone:'Africa/Lagos'};
 const fD=ts=>new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',...TZ});
 const fDT=ts=>fD(ts)+', '+new Date(ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,...TZ});
@@ -377,7 +510,7 @@ function norm(raw){const now=new Date();PROF=raw.profile||PROF;
 let PROF={name:''};
 const FN=()=>((PROF.name||'').trim().split(' ')[0]||'there');
 const PV=()=>(PROF.payout&&PROF.payout.provider)||'Cleva';
-const myAV=()=>{if(PROF.photo&&/^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*$/.test(PROF.photo))return PROF.photo;if(!PROF.custom&&PROF.name==='Tobi Adeyemi')return AVT;
+const myAV=()=>{if(PROF.photo&&/^(data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*|\/api\/state\?photo=[a-f0-9]{16})$/.test(PROF.photo))return PROF.photo;if(!PROF.custom&&PROF.name==='Tobi Adeyemi')return AVT;
  const t=(PROF.name||'You').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
  return 'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#0F0F0F"/><text x="40" y="51" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="600" text-anchor="middle" fill="#F6F6F3">'+t+'</text></svg>')};
 async function sync(force){try{const raw=await API.get();if(!force&&raw.v===VER)return;const prevEarn=earned(),prevMax=LASTNOTE;VER=raw.v;norm(raw);
@@ -404,23 +537,22 @@ addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(h&&h!==cur)
 function chrome(){const n=unread();
  const item=(v,ic,lab,extra)=>'<button data-go="'+v+'"'+(cur===v||(v==='dashboard'&&cur==='project')?' aria-current="page"':'')+'>'+ic+lab+(extra||'')+'</button>';
  $('#nav').innerHTML=item('dashboard',I.home,'Home')+item('notifications',I.bell,'Notifications',n?'<span class="badge">'+n+'</span>':'')+
-  '<a href="'+CREATE+'#templates">'+I.grid+'Templates'+I.ext+'</a>'+
-  '<a href="'+CREATE+'#templates">'+I.plus+'New invoice'+I.ext+'</a>'+
-  item('states',I.phone,'Client states');
+  '<a href="'+CREATE+'#templates">'+I.plus+'New invoice</a>';
  $$('[data-badge]').forEach(b=>{b.textContent=n;b.hidden=!n});
  $('#tabs').innerHTML='<button data-go="dashboard"'+(cur==='dashboard'||cur==='project'?' aria-current="page"':'')+'>'+I.home+'<span>Home</span></button>'+
   '<a class="new" href="'+CREATE+'#templates"><span>'+I.plus+'</span><span>New invoice</span></a>'+
   '<button data-go="notifications"'+(cur==='notifications'?' aria-current="page"':'')+'>'+I.bell+(n?'<span class="badge">'+n+'</span>':'')+'<span>Alerts</span></button>';
- $('#demo-d').innerHTML=demoHTML();
+ {const d=$('#demo-d'),o=d.open;d.innerHTML=demoHTML();d.open=o}
  $('#me').innerHTML='<img class="av" src="'+myAV()+'" alt=""><div><b>'+esc(PROF.name||'Your profile')+'</b><small>'+(PROF.verified!==false?'ID verified · ':'')+esc(PV())+(PV()==='USDT wallet'?'':' •••• 4821')+'</small></div>'}
-function demoHTML(){const lumi=P('lumi')||{};return '<span class="eyebrow">Demo controls</span>'+
+function demoHTML(){const lumi=P('lumi')||{};return '<summary>'+I.phone+'Demo controls<svg class="chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="dbody">'+
  '<button data-demo="pay"'+(lumi.status!=='sent'||S.empty?' disabled':'')+'><i></i>Clara pays $450</button>'+
  '<button data-demo="ask"'+(!P('kora')||(P('kora')||{}).req||S.empty?' disabled':'')+'><i></i>James asks for an update</button>'+
  '<button data-demo="sample"><i></i>Load sample data</button>'+
- '<button data-demo="fresh"><i></i>Clear all data</button>'}
+ '<button data-demo="fresh"><i></i>Clear all data</button>'+
+ '<button data-go="states"><i></i>See client screens</button></div>'}
 
 // ===== balance privacy (remembered on this device) =====
-let HIDE=false;try{HIDE=localStorage.getItem('pm-hide')==='1'}catch(e){}
+let DEMO_OPEN=false,HIDE=false;try{HIDE=localStorage.getItem('pm-hide')==='1'}catch(e){}
 const MASK='$•••••';
 const EYE='<svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M1.8 10S4.8 4.5 10 4.5 18.2 10 18.2 10 15.2 15.5 10 15.5 1.8 10 1.8 10z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
 const EYEOFF='<svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M8.2 5a8.6 8.6 0 0 1 1.8-.2c5.2 0 8.2 5.2 8.2 5.2a14 14 0 0 1-2.4 3M12.5 15a8 8 0 0 1-2.5.4C4.8 15.4 1.8 10 1.8 10a14 14 0 0 1 3.3-3.8M8.2 8.3a2.6 2.6 0 0 0 3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -432,31 +564,32 @@ function prow(p){const bars=p.status==='draft'||p.status==='sent'?'':'<div class
  const prog=p.status==='draft'?'Not sent yet':p.status==='sent'?'Sent '+p.sent+' · not paid':p.status==='delivered'?'Delivered '+p.delivered:'Stage '+(p.stage+1)+' of '+p.stages.length+' · '+esc(p.stages[p.stage]);
  return '<button class="prow" data-go="project" data-id="'+p.id+'"><span class="av">'+ini(p.client)+'</span>'+
   '<span class="t"><b>'+esc(p.title)+(p.req?'<span class="flag" aria-label="Open update request"></span>':'')+'</b><small>'+esc(p.client)+' · '+esc(p.co)+'</small></span>'+
-  '<span class="mini">'+bars+'<span>'+prog+'</span></span>'+
+  '<span class="mini"><span>'+prog+'</span>'+bars+'</span>'+
   '<span class="cl">'+statusChip(p.status)+'</span>'+
   '<span class="amt">'+money(p.amt,0)+'<small>'+(p.method?p.method:p.status==='draft'?'Draft':'Pending')+'</small></span></button>'}
 function dashboard(){
  if(S.empty)return '<div class="view">'+
-  '<div class="ph"><div><span class="eyebrow">'+today()+'</span><h1>Welcome, '+esc(PROF.name.split(' ')[0])+'</h1><div class="sub">Your profile and '+esc(PV())+' payout are set. One step left.</div></div></div>'+
+  '<div class="ph"><div><span class="date">'+today()+'</span><h1>Welcome, '+esc(PROF.name.split(' ')[0])+'</h1><div class="sub">Your profile and '+esc(PV())+' payout are set. One step left.</div></div></div>'+
   '<div class="card empty"><div class="vig" aria-hidden="true"><svg viewBox="0 0 160 118"><defs><clipPath id="slotclip"><rect x="0" y="40" width="160" height="78"/></clipPath></defs><g clip-path="url(#slotclip)"><g class="tk"><rect x="52" y="30" width="56" height="78" rx="4" fill="#FFFFFF" stroke="#DFDFDA"/><path d="M52 34a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v24H52z" fill="#2E5BFF"/><rect x="58" y="44" width="24" height="7" rx="2" fill="#FFFFFF" opacity=".9"/><rect x="58" y="66" width="40" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="75" width="30" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="88" width="44" height="4" rx="2" fill="#E4E4DF"/><rect x="58" y="97" width="22" height="4" rx="2" fill="#E4E4DF"/></g></g><rect x="26" y="14" width="108" height="32" rx="13" fill="#141413" stroke="var(--line)"/><rect x="36" y="38" width="88" height="4" rx="2" fill="#000"/><circle class="led" cx="120" cy="25" r="3" fill="#00C389"/><path d="M40 21h10a6 6 0 0 1 0 12h-5v1.5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2z" fill="#F2F1EC"/><circle cx="50" cy="27" r="2.6" fill="#FF5B1F"/></svg></div><span class="eyebrow">No invoices yet</span><h3>Send your first invoice</h3><p>Pick a template for your craft, add the work, and send it as a link. Your client pays in USD or USDT, straight to your account.</p>'+
   '<a class="btn sig" href="'+CREATE+'#templates">'+I.plus+'Create your first invoice</a>'+
   '<div class="steps3"><div><span>01</span><b>Pick a template</b>Designed for design, dev, writing or video.</div><div><span>02</span><b>Send the link</b>WhatsApp, email or QR. No client account needed.</div><div><span>03</span><b>Get paid, show progress</b>Stages and updates keep your client close.</div></div></div>'+
-  '<div class="stats"><div class="card stat"><span class="eyebrow">Earned</span><span class="n">$0</span><span class="d">Your first payment shows here</span></div><div class="card stat"><span class="eyebrow">Awaiting payment</span><span class="n">$0</span></div><div class="card stat"><span class="eyebrow">Active projects</span><span class="n">0</span></div></div></div>';
+  '<section class="card stats"><div class="stat hero"><span class="lab">Earned</span><span class="n">$0</span><span class="d">Your first payment shows here</span></div><div class="stat"><span class="lab">Awaiting payment</span><span class="n">$0</span></div><div class="stat"><span class="lab">Active projects</span><span class="n">0</span></div></section></div>';
  const reqs=openReqs(),e=earned(),wait=S.projects.filter(p=>p.status==='sent'),act=S.projects.filter(p=>['progress','review'].includes(p.status));
  const month=paidList().filter(p=>p.month).reduce((s,p)=>s+p.amt,0);
  const f=S.filter,list=S.projects.filter(p=>f==='all'||(f==='active'&&['progress','review'].includes(p.status))||(f==='waiting'&&['sent','draft'].includes(p.status))||(f==='done'&&p.status==='delivered'));
  const r=reqs[0];
  return '<div class="view">'+
- '<div class="ph"><div><span class="eyebrow">'+today()+'</span><h1>'+greet()+', '+esc(PROF.name.split(' ')[0])+'</h1></div><div class="acts hide-m"><a class="btn ink" href="'+CREATE+'#templates">'+I.plus+'New invoice</a></div></div>'+
- (r?'<section class="req" aria-label="Open update requests"><span class="av">'+ini(r.client)+'</span><div style="min-width:0"><b>'+esc(r.client)+' is waiting for an update</b><q>'+esc(r.req.q)+'</q><small>'+esc(r.title)+' · asked '+r.req.at+' · reply within 3 hrs to keep your response badge</small></div><button class="btn ink" data-go="project" data-id="'+r.id+'">Reply now</button>'+
+ '<div class="ph"><div><span class="date">'+today()+'</span><h1>'+greet()+', '+esc(PROF.name.split(' ')[0])+'</h1></div><div class="acts hide-m"><a class="btn ink" href="'+CREATE+'#templates">'+I.plus+'New invoice</a></div></div>'+
+ (r?'<section class="req" aria-label="Open update requests"><span class="av">'+ini(r.client)+'</span><div style="min-width:0"><b>'+esc(r.client)+' is waiting for an update</b><q>'+esc(r.req.q)+'</q><small>'+esc(r.title)+' · asked '+r.req.at+'</small></div><button class="btn ink" data-go="project" data-id="'+r.id+'">Reply now</button>'+
    (reqs.length>1?'<div class="more">+'+(reqs.length-1)+' more waiting: '+reqs.slice(1).map(x=>'<a href="#" data-go="project" data-id="'+x.id+'">'+esc(x.client)+'</a>').join(', ')+'</div>':'')+'</section>'
   :'<div class="allclear"><i></i>No open requests. Every client has an answer.</div>')+
- '<div class="stats"><div class="card stat hero"><span class="sth"><span class="eyebrow">Earned · paid to '+esc(PV())+' •••• 4821</span>'+eyeBtn()+'</span><span class="n" id="earned">'+(HIDE?MASK:money(e,0))+'<small> USD</small></span><span class="d"><span><b>+'+(HIDE?MASK:money(month,0))+'</b> this month</span><span>'+paidList().length+' paid invoices</span></span></div>'+
- '<button class="card stat" style="text-align:left;color:inherit" data-filter="waiting"><span class="eyebrow">Awaiting payment</span><span class="n">'+(HIDE?MASK:money(wait.reduce((s,p)=>s+p.amt,0),0))+'</span><span class="d">'+(wait.length?wait.length+' invoice · sent '+wait[0].sent:'All invoices paid')+'</span></button>'+
- '<button class="card stat" style="text-align:left;color:inherit" data-filter="active"><span class="eyebrow">Active projects</span><span class="n">'+act.length+'</span><span class="d">'+act.filter(p=>p.status==='review').length+' waiting on client review</span></button></div>'+
- '<section style="display:grid;gap:12px"><div class="sech"><h2>Projects</h2><div class="seg" role="group" aria-label="Filter projects">'+[['all','All'],['active','Active'],['waiting','Unpaid'],['done','Delivered']].map(x=>'<button data-filter="'+x[0]+'" aria-pressed="'+(f===x[0])+'">'+x[1]+'</button>').join('')+'</div></div>'+
+ '<section class="card stats" aria-label="Money">'+
+  '<div class="stat hero"><span class="sth"><span class="lab">Earned</span>'+eyeBtn()+'</span><span class="n" id="earned">'+(HIDE?MASK:money(e,0))+'<small> USD</small></span><span class="d"><b>+'+(HIDE?MASK:money(month,0))+'</b> this month · paid to '+esc(PV())+(PV()==='USDT wallet'?'':' •••• 4821')+'</span></div>'+
+  '<button class="stat" data-filter="waiting"><span class="lab">Awaiting payment</span><span class="n">'+(HIDE?MASK:money(wait.reduce((s,p)=>s+p.amt,0),0))+'</span><span class="d">'+(wait.length?wait.length+(wait.length>1?' invoices':' invoice')+' · sent '+wait[0].sent:'All invoices paid')+'</span></button>'+
+  '<button class="stat" data-filter="active"><span class="lab">Active projects</span><span class="n">'+act.length+'</span><span class="d">'+(act.filter(p=>p.status==='review').length?act.filter(p=>p.status==='review').length+' waiting on client review':'All moving')+'</span></button></section>'+
+ '<section class="projects"><div class="sech"><h2>Projects</h2><div class="seg" role="group" aria-label="Filter projects">'+[['all','All'],['active','Active'],['waiting','Unpaid'],['done','Delivered']].map(x=>'<button data-filter="'+x[0]+'" aria-pressed="'+(f===x[0])+'">'+x[1]+'</button>').join('')+'</div></div>'+
  '<div class="card plist">'+(list.length?list.map(prow).join(''):'<div class="empty" style="padding:28px"><div class="vig sm" aria-hidden="true"><svg viewBox="0 0 120 80"><rect x="22" y="14" width="76" height="16" rx="6" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4"/><rect x="22" y="38" width="76" height="16" rx="6" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4"/><rect x="32" y="20" width="30" height="4" rx="2" fill="var(--line)"/><rect x="32" y="44" width="22" height="4" rx="2" fill="var(--line)"/></svg></div><p>Nothing here yet. '+(f==='done'?'Delivered projects land here.':f==='active'?'Paid projects you\'re working on show here.':'Unpaid and draft invoices show here.')+'</p></div>')+'</div></section>'+
- '<div class="demo mdemo">'+demoHTML()+'</div></div>'}
+ '<details class="demo mdemo"'+(DEMO_OPEN?' open':'')+' ontoggle="DEMO_OPEN=this.open">'+demoHTML()+'</details></div>'}
 
 // ===== project =====
 function stageList(p){const done=p.status==='delivered';return '<div class="track"><i style="width:'+pct(p)+'%"></i></div><ol class="stg">'+p.stages.map((s,i)=>{const st=done||i<p.stage?'done':i===p.stage?'now':'todo';
@@ -468,7 +601,7 @@ function tlItem(e,p){const at='<span>'+e.at+'</span>';
  return '<li><span class="ic">'+I.flag+'</span><div><div class="sys">'+esc(e.text)+' · '+e.at+'</div></div></li>'}
 function project(){const p=P(curP);const first=p.client.split(' ')[0];
  const head='<button class="back" data-go="dashboard">'+I.left+'All projects</button>'+
-  '<div class="ph"><div><span class="eyebrow">'+esc(p.co)+' · '+esc(p.city)+'</span><h1>'+esc(p.title)+'</h1><div class="sub" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+statusChip(p.status)+'<span>'+money(p.amt)+(p.method?' · paid by '+p.method:'')+'</span></div></div>'+
+  '<div class="ph"><div><span class="date">'+esc(p.co)+(p.city?' · '+esc(p.city):'')+'</span><h1>'+esc(p.title)+'</h1><div class="sub" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+statusChip(p.status)+'<span>'+money(p.amt)+(p.method?' · paid by '+p.method:'')+'</span></div></div>'+
   (p.link?'<div class="acts"><a class="btn line" href="'+CLIENT+p.code+'">See what '+esc(first)+' sees</a></div>':'')+'</div>';
  if(p.status==='draft')return '<div class="view">'+head+'<div class="card pad wait"><span class="eyebrow">Draft</span><div class="big">'+money(p.amt,0)+'</div><p>This invoice hasn\'t been sent. Finish the details and send '+esc(first)+' a link.</p><div class="acts"><a class="btn sig" href="'+CREATE+'#editor">Finish and send</a></div></div></div>';
  if(p.status==='sent')return '<div class="view">'+head+'<div class="pgrid"><div class="col">'+
@@ -478,11 +611,10 @@ function project(){const p=P(curP);const first=p.client.split(' ')[0];
   '<div class="locked">'+I.flag+'Stages and updates unlock once '+esc(first)+' pays.</div></div>'+
   '<div class="col"><div class="card pad"><div class="cardh"><h3>Stages</h3><span class="eyebrow">After payment</span></div>'+stageList({...p,stage:-1})+'</div></div></div></div>';
  const done=p.status==='delivered',last=p.stage>=p.stages.length-1;
- const req=p.req?'<section class="preq" aria-label="Open request"><div class="top"><span class="av">'+ini(p.client)+'</span><div><b>'+esc(p.client)+'</b> asked for an update<div class="when">'+p.req.at+' · waiting for you</div></div></div><blockquote>"'+esc(p.req.q)+'"</blockquote>'+(p.req.note?'<div class="note">'+esc(p.req.note)+'</div>':'')+
-   '<div class="clock"><span>Reply in the box below. '+esc(first)+' sees it instantly.</span><span class="mono">'+Math.floor(p.req.mins/60)+'h '+(p.req.mins%60)+'m</span></div></section>':(p.answeredMsg?'<div class="answered"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.3l2.8 2.8 6.2-6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'+p.answeredMsg+'</div>':'');
+ const req=!p.req&&p.answeredMsg?'<div class="answered"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.3l2.8 2.8 6.2-6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'+p.answeredMsg+'</div>':'';
+ const ask=p.req?'<div class="ask"><span class="av">'+ini(p.client)+'</span><div style="min-width:0"><div class="askm"><b>'+esc(first)+' asked</b><span>'+p.req.at+'</span><span class="pend">Waiting for you</span></div><blockquote>'+esc(p.req.q)+'</blockquote>'+(p.req.note?'<div class="note">'+esc(p.req.note)+'</div>':'')+'</div></div>':'';
  const composer=done?'<div class="closed">'+I.check.replace('viewBox','width="16" height="16" viewBox')+'Delivered '+p.delivered+'. '+esc(first)+' can still see every stage and update.</div>':
-  '<div class="card pad"><div class="cardh"><h3>'+(p.req?'Reply to '+esc(first):'Post an update')+'</h3><span class="count" id="cnt">0/1000</span></div><form class="compose" id="compose">'+
-  (p.req?'<div class="replying">'+I.ask.replace('viewBox','width="14" height="14" viewBox')+'Replying to "'+esc(p.req.q)+'"</div>':'')+
+  '<div class="card pad'+(p.req?' asking':'')+'">'+ask+'<div class="cardh"><h3>'+(p.req?'Your reply':'Post an update')+'</h3><span class="count" id="cnt">0/1000</span></div><form class="compose" id="compose">'+
   '<label for="up-text" class="eyebrow" style="position:absolute;left:-9999px">Update</label><textarea id="up-text" maxlength="1000" placeholder="'+(p.req?'Share what you have so far, even if it\'s rough.':'What did you finish? What\'s next?')+'"></textarea>'+
   '<input id="up-link" placeholder="Add a link (optional), e.g. figma.com/file/…" aria-label="Link (optional)">'+
   '<div class="crow">'+(last?'<span></span>':'<label><input type="checkbox" id="up-adv">Also move to <b style="font-weight:500;color:var(--ink)">'+esc(p.stages[p.stage+1])+'</b></label>')+'<button class="btn ink" type="submit">'+(p.req?'Send reply':'Post update')+'</button></div></form></div>';
@@ -490,7 +622,7 @@ function project(){const p=P(curP);const first=p.client.split(' ')[0];
   (done?'':'<div class="sacts">'+(last?'<button class="btn ink" data-act="deliver">Mark as delivered</button>':'<button class="btn ink" data-act="next">Move to '+esc(p.stages[p.stage+1])+'</button>')+(p.stage>1?'<button class="btn text sm" data-act="back">Step back to '+esc(p.stages[p.stage-1])+'</button>':'')+'</div>')+'</div>';
  const payCard='<div class="card pad"><div class="cardh"><h3>Payment</h3><span class="chip paid"><i></i>Paid</span></div><div class="kv"><div><span>Amount</span><b>'+money(p.amt)+'</b></div><div><span>Paid on</span><b>'+p.paid+'</b></div><div><span>Method</span><b class="mono">'+esc(p.tx)+'</b></div><div><span>Settled to</span><b>'+esc(PV())+' •••• 4821</b></div></div><div class="linkbox"><code>'+p.link+'</code><button class="btn ghost sm" data-copy="'+p.link+'">Copy</button></div></div>';
  return '<div class="view">'+head+'<div class="pgrid"><div class="col">'+req+composer+
-  '<div class="card pad"><div class="cardh"><h3>Timeline</h3><span class="eyebrow">Newest first · '+esc(first)+' sees this</span></div><ul class="tl" id="tl">'+p.tl.map(e=>tlItem(e,p)).join('')+'</ul></div></div>'+
+  '<div class="card pad"><div class="cardh"><h3>Timeline</h3><span class="lab">'+esc(first)+' sees this too</span></div><ul class="tl" id="tl">'+p.tl.map(e=>tlItem(e,p)).join('')+'</ul></div></div>'+
   '<div class="col">'+stagesCard+payCard+'</div></div></div>'}
 
 // ===== notifications =====

@@ -32,6 +32,19 @@ async function save(s) {
   if (!URL_) { MEM = s; return; }
   await redis(['SET', KEY, JSON.stringify(s)]);
 }
+// Profile photos live under their own key and are served from a cacheable URL,
+// so the 3-second checks never carry the image.
+const MEM_PH = new Map();
+const PHOTO_URL = /^\/api\/state\?photo=([a-f0-9]{16})$/;
+async function putPhoto(h, data) { if (!URL_) { MEM_PH.set(h, data); return; } await redis(['SET', 'payme:photo:' + h, data]); }
+async function getPhoto(h) { if (!URL_) return MEM_PH.get(h) || null; return redis(['GET', 'payme:photo:' + h]); }
+const photoHash = d => crypto.createHash('sha256').update(d).digest('hex').slice(0, 16);
+// older saves kept the image inside the document: move it out once
+async function migratePhoto(s) {
+  const ph = s && s.profile && s.profile.photo;
+  if (typeof ph !== 'string' || !ph.startsWith('data:')) return false;
+  const h = photoHash(ph); await putPhoto(h, ph); s.profile.photo = '/api/state?photo=' + h; return true;
+}
 // 40 writes per minute per visitor: plenty for a live demo, stops scripted flooding
 async function limited(ip) {
   const k = 'payme:rl:' + ip + ':' + Math.floor(Date.now() / 60e3);
@@ -152,7 +165,12 @@ function cleanProfile(cur, inp) {
   if ('site' in inp) out.site = site(inp.site);
   if ('verified' in inp) out.verified = inp.verified !== false;
   if ('custom' in inp) out.custom = !!inp.custom;
-  if ('photo' in inp) { const ph = inp.photo; if (typeof ph === 'string' && ph.length <= 400e3 && PHOTO.test(ph)) out.photo = ph; else delete out.photo; }
+  if ('photo' in inp) {
+    const ph = inp.photo;
+    if (typeof ph === 'string' && ph === cur.photo && PHOTO_URL.test(ph)) out.photo = ph; // unchanged
+    else if (typeof ph === 'string' && ph.length <= 400e3 && PHOTO.test(ph)) { const h = photoHash(ph); out.photo = '/api/state?photo=' + h; out.__newPhoto = { h, data: ph }; }
+    else delete out.photo;
+  }
   if ('payout' in inp) {
     const po = inp.payout && typeof inp.payout === 'object' ? inp.payout : {};
     const mode = ['cleva', 'bank', 'usdt'].includes(po.mode) ? po.mode : 'cleva';
@@ -259,19 +277,38 @@ module.exports = async (req, res) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   try {
     if (req.method !== 'GET' && req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-    const q = (req.query && req.query.code) || new URL(req.url || '/', 'http://x').searchParams.get('code');
+    const sp = new URL(req.url || '/', 'http://x').searchParams;
+    const q = (req.query && req.query.code) || sp.get('code');
+    // the freelancer's photo: an image response the browser keeps for a year (the URL changes when the photo does)
+    const ph = (req.query && req.query.photo) || sp.get('photo');
+    if (req.method === 'GET' && ph) {
+      const data = /^[a-f0-9]{16}$/.test(ph) ? await getPhoto(ph) : null;
+      const m = data && /^data:(image\/(?:png|jpeg|webp|gif));base64,(.+)$/.exec(data);
+      if (!m) return res.status(404).json({ error: 'Not found' });
+      res.setHeader('Content-Type', m[1]); res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      const buf = Buffer.from(m[2], 'base64');
+      return typeof res.send === 'function' ? res.status(200).send(buf) : (res.statusCode = 200, res.end(buf));
+    }
     if (req.method === 'POST') {
       if (+(req.headers && req.headers['content-length']) > 600e3) return res.status(413).json({ error: 'That is too large to save' });
       const ip = String((req.headers && (req.headers['x-forwarded-for'] || req.headers['x-real-ip'])) || (req.socket && req.socket.remoteAddress) || 'local').split(',')[0].trim();
       if (await limited(ip)) return res.status(429).json({ error: 'Too many changes at once. Wait a minute and try again.' });
     }
     let s = await load(); if (!s) { s = seed(); await save(s); }
-    if (req.method === 'GET') return res.status(200).json(isCode(q) ? clientView(s, q) : fullView(s));
+    if (await migratePhoto(s)) await save(s);
+    if (req.method === 'GET') {
+      // nothing changed since the version the page already has: answer in a few bytes
+      const since = sp.get('since') || (req.query && req.query.since);
+      if (since != null && +since === s.v) return res.status(200).json({ same: true, v: s.v, now: nowTs() });
+      return res.status(200).json(isCode(q) ? clientView(s, q) : fullView(s));
+    }
     let b; try { b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {}); } catch (e) { fail('Bad request'); }
     // a client page can only pay or ask on its own invoice, and only sees that invoice back
     const asClient = isCode(b && b.code) && CLIENT_ACTIONS.includes(b.action);
     if (asClient) b = { action: b.action, code: b.code, method: b.method, q: b.q, note: b.note };
-    s = apply(s, b); s.v = (s.v || 0) + 1; await save(s);
+    s = apply(s, b); s.v = (s.v || 0) + 1;
+    const np = s.profile && s.profile.__newPhoto; if (np) { delete s.profile.__newPhoto; await putPhoto(np.h, np.data); }
+    await save(s);
     return res.status(200).json(asClient ? clientView(s, b.code) : fullView(s));
   } catch (e) {
     if (e instanceof UserError) return res.status(400).json({ error: e.message });

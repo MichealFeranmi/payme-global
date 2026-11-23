@@ -2,7 +2,7 @@
 </style></head><body>
 <title>PayMe Ticket Demo</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: client view. Printer + ticket column; side column (pay card, then progress). Phones: pay bar fixed at bottom, progress below the ticket. */
@@ -34,7 +34,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* top bar */
 .top{max-width:880px;margin:0 auto 18px;display:flex;align-items:center;gap:10px;background:var(--raised);border:1px solid var(--line);border-radius:22px;padding:7px 7px 7px 14px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:-.04em;font-size:16px;white-space:nowrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:0;font-size:16px;white-space:nowrap}
 .brand svg{width:24px;height:24px}
 .secure{display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink3);margin-left:auto;white-space:nowrap}
 .ibtn{border:0;background:var(--surface);border-radius:14px;height:34px;padding:0 12px;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink2)}
@@ -47,14 +47,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 .col{min-width:0}
 .intro{text-align:center;margin:6px 0 18px}
 .intro .from{font-size:13px;color:var(--ink3)}
-.intro h1{font-size:30px;font-weight:500;letter-spacing:-.05em;line-height:.96;margin:6px 0 0;text-wrap:balance}
+.intro h1{font-size:30px;font-weight:500;letter-spacing:-0.02em;line-height:1.04;margin:6px 0 0;text-wrap:balance}
 
 /* printer */
 .printer{position:relative;width:100%;max-width:420px;height:92px;margin:0 auto;z-index:3}
 .p-body{position:absolute;inset:0;border-radius:30px 30px 20px 20px;background:linear-gradient(180deg,#2C2C2A 0%,#161615 55%,#0B0B0A 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -2px 0 rgba(0,0,0,.6),0 16px 30px -12px rgba(0,0,0,.45);border:1px solid var(--p-edge)}
 .p-face{position:absolute;left:20px;right:20px;top:16px;display:flex;align-items:center;justify-content:space-between;color:#F2F1EC}
-.p-face .m{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:-.04em;font-size:14px}
+.p-face .m{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:0;font-size:14px}
 .p-face svg{width:20px;height:20px}
 .p-stat{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:#A9A8A2}
 .led{width:9px;height:9px;border-radius:50%;background:#00C389;box-shadow:0 0 0 3px rgba(0,195,137,.16),0 0 12px 2px rgba(0,195,137,.45)}
@@ -75,20 +75,20 @@ button{font:inherit;color:inherit;cursor:pointer}
 .band{background:var(--theme);color:var(--on-theme);padding:36px 22px 22px;overflow:hidden}
 .band::after{content:"";position:absolute;right:-20px;top:-20px;width:62%;height:130%;pointer-events:none;background-image:radial-gradient(circle,currentColor 1.1px,transparent 1.4px);background-size:7px 7px;opacity:.2;-webkit-mask:radial-gradient(ellipse at 100% 0,#000 0%,#0000 70%);mask:radial-gradient(ellipse at 100% 0,#000 0%,#0000 70%)}
 .band-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;position:relative;z-index:1}
-.logo{width:40px;height:40px;border-radius:12px;background:var(--on-theme);color:var(--theme);display:grid;place-items:center;font-weight:600;letter-spacing:-.04em;font-size:15px}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--on-theme);color:var(--theme);display:grid;place-items:center;font-weight:600;letter-spacing:0;font-size:15px}
 .inv-id{text-align:right;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;line-height:1.5}
 .inv-id span{display:block;opacity:.7}
 .amount{position:relative;z-index:1;margin-top:26px}
 .amount .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.72}
-.amount .big{font-size:clamp(56px,16vw,72px);font-weight:500;letter-spacing:-.055em;line-height:.92;margin-top:6px}
-.amount .big small{font-size:.42em;letter-spacing:-.03em;opacity:.75}
+.amount .big{font-size:clamp(56px,16vw,72px);font-weight:500;letter-spacing:-0.035em;line-height:1.02;margin-top:6px}
+.amount .big small{font-size:.42em;letter-spacing:-0.015em;opacity:.75}
 .amount .sub{margin-top:10px;font-size:13px;opacity:.82;display:flex;gap:8px;flex-wrap:wrap}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px 5px 8px;font-size:12px;font-weight:500;background:color-mix(in srgb,var(--on-theme) 14%,transparent);margin-top:16px;position:relative;z-index:1}
 .pill i{width:7px;height:7px;border-radius:50%;background:currentColor}
 .ticket.paid .pill i{background:#00C389}
 .who{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-items:center}
 .av{width:56px;height:56px;border-radius:18px;object-fit:cover;background:#ddd}
-.name{font-weight:600;font-size:17px;letter-spacing:-.025em;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.name{font-weight:600;font-size:17px;letter-spacing:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .ver{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:#0F5132;background:#E3F4EA;border-radius:999px;padding:2px 8px 2px 4px;letter-spacing:0}
 .ver svg{width:14px;height:14px}
 .role{color:var(--t-ink2);font-size:13px}
@@ -98,9 +98,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .kv .full{grid-column:1/-1}
 .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-ink3)}
-.v{font-size:14px;font-weight:500;margin-top:3px;letter-spacing:-.01em}
+.v{font-size:14px;font-weight:500;margin-top:3px;letter-spacing:0}
 .v .muted{display:block;font-weight:400;color:var(--t-ink2);font-size:13px}
-.proj{font-size:19px;font-weight:500;letter-spacing:-.035em;line-height:1.15;margin-top:4px}
+.proj{font-size:19px;font-weight:500;letter-spacing:0;line-height:1.15;margin-top:4px}
 .desc{font-size:13px;color:var(--t-ink2);margin-top:6px}
 .niche{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .niche>div{background:var(--t-tint);border-radius:12px;padding:10px 10px 11px}
@@ -111,12 +111,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .items{list-style:none;margin:0;padding:0}
 .items li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:11px 0;border-bottom:1px solid var(--t-line)}
 .items li:first-child{padding-top:0}
-.it-n{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.it-n{font-size:14px;font-weight:500;letter-spacing:0}
 .it-q{font-family:var(--mono);font-size:11.5px;color:var(--t-ink3)}
 .it-a{grid-row:1/3;grid-column:2;font-size:14px;font-weight:500;align-self:center}
 .tot{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px}
 .tot .k{font-size:11px}
-.tot .t{font-size:26px;font-weight:500;letter-spacing:-.045em}
+.tot .t{font-size:26px;font-weight:500;letter-spacing:-0.01em}
 .tot-sub{display:flex;justify-content:space-between;font-size:12.5px;color:var(--t-ink2);padding-top:10px}
 .pay{display:grid;gap:8px}
 .opt{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--t-tint);border-radius:16px;padding:11px 14px 11px 11px;border:1.5px solid transparent}
@@ -130,7 +130,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .cleva .mono{color:var(--t-ink);font-size:12px}
 .terms{font-size:12.5px;color:var(--t-ink2)}
 .terms ul{margin:6px 0 0;padding-left:16px;display:grid;gap:3px}
-.sign{margin-top:16px;font-size:15px;letter-spacing:-.02em;color:var(--t-ink)}
+.sign{margin-top:16px;font-size:15px;letter-spacing:0;color:var(--t-ink)}
 .sign em{font-style:italic;color:var(--t-ink2)}
 .stub{text-align:center;padding-bottom:10px}
 .stub .kv{text-align:left;margin-bottom:18px}
@@ -154,10 +154,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .paycard .route i{display:grid;place-items:center;background:var(--ink);color:var(--bg);font-style:normal;font-size:11px;font-weight:600}
 .paycard .arrow{color:var(--ink3);flex:none}
 .paycard .figs{display:flex;justify-content:space-between;align-items:flex-end;margin:20px 0 18px;gap:12px}
-.paycard .big{font-size:44px;font-weight:500;letter-spacing:-.05em;line-height:.92}
+.paycard .big{font-size:44px;font-weight:500;letter-spacing:-0.03em;line-height:1.02}
 .paycard .due{text-align:right;font-size:12.5px;color:var(--ink3)}
 .paycard .due b{display:block;color:var(--ink);font-weight:500;font-size:14px}
-.cta{width:100%;border:0;border-radius:14px;height:52px;font-size:16px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s}
+.cta{width:100%;border:0;border-radius:14px;height:52px;font-size:16px;font-weight:600;letter-spacing:0;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s}
 .cta:active{transform:scale(.98)}
 .cta.pay-btn{background:var(--signal);color:#0F0F0F}
 .cta.ink{background:var(--ink);color:var(--bg)}
@@ -172,7 +172,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .progress{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:.0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .ph{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.ph h2{font-size:22px;font-weight:500;letter-spacing:-.04em;margin:0}
+.ph h2{font-size:22px;font-weight:500;letter-spacing:-0.01em;margin:0}
 .ph .mono{font-size:11px;letter-spacing:.06em;color:var(--ink3);text-transform:uppercase}
 .track{height:6px;border-radius:999px;background:var(--surface);margin:14px 0 18px;overflow:hidden}
 .track i{display:block;height:100%;background:var(--ink);border-radius:inherit;transition:width .8s cubic-bezier(.2,.8,.2,1)}
@@ -186,7 +186,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .now .dot{border-color:var(--ink)}
 .now .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(.6);opacity:.5}}
-.st-n{font-size:14.5px;font-weight:500;letter-spacing:-.015em;line-height:1.3}
+.st-n{font-size:14.5px;font-weight:500;letter-spacing:0;line-height:1.3}
 .todo .st-n{color:var(--ink3)}
 .st-m{font-size:12px;color:var(--ink3)}
 .st-r{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);white-space:nowrap;padding-top:2px}
@@ -227,7 +227,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .grab{width:40px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 14px}
 @media (min-width:900px){.grab{display:none}}
 .sh-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
-.sh-h h3{margin:0;font-size:22px;font-weight:500;letter-spacing:-.04em}
+.sh-h h3{margin:0;font-size:22px;font-weight:500;letter-spacing:-0.01em}
 .x{border:0;background:var(--surface);width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
 .seg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border-radius:14px;padding:3px;margin-bottom:16px}
 .seg button{border:0;background:none;padding:9px;border-radius:11px;color:var(--ink2);font-size:14px}
@@ -237,7 +237,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .qr svg{width:100%;height:100%;display:block}
 .net{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;border-radius:999px;padding:4px 10px;background:var(--surface)}
 .net i{width:7px;height:7px;border-radius:50%;background:#EB0029}
-.amt{font-size:26px;font-weight:500;letter-spacing:-.045em;margin:6px 0 2px}
+.amt{font-size:26px;font-weight:500;letter-spacing:-0.01em;margin:6px 0 2px}
 .addr{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:14px;padding:10px 10px 10px 12px;margin-top:14px}
 .addr code{font-family:var(--mono);font-size:12.5px;flex:1;min-width:0;overflow-wrap:anywhere}
 .copy{border:1px solid var(--line);background:var(--raised);border-radius:10px;padding:6px 10px;font-size:12px;flex:none}
@@ -251,7 +251,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .proc{display:grid;place-items:center;text-align:center;padding:28px 0 18px;gap:10px}
 .spin{width:44px;height:44px;border-radius:50%;border:3px solid var(--surface);border-top-color:var(--ink);animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.proc b{font-size:18px;font-weight:500;letter-spacing:-.03em}
+.proc b{font-size:18px;font-weight:500;letter-spacing:0}
 .proc small{color:var(--ink3);font-size:13px}
 .qchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .qchips button{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:8px 13px;font-size:13.5px}
@@ -487,8 +487,8 @@ input,textarea,select{font-size:max(16px,1em)}
     asks:['Could we get a square crop?','Thank you, all received!','Are you free for the spring issue?']}
   };
   const CODE=(location.pathname.match(/\/i\/([A-Za-z0-9]+)/)||[])[1]||location.hash.slice(1);
-  const API={get:()=>fetch('/api/state?code='+encodeURIComponent(CODE),{cache:'no-store'}).then(r=>r.json()),
-   do:(a,b)=>fetch('/api/state',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:a,code:CODE,...(b||{})})}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||'Something went wrong');return j})};
+  const API={get:async()=>{const c=API._c;const r=await fetch('/api/state?code='+encodeURIComponent(CODE)+(c?'&since='+c.v:''),{cache:'no-store'}).then(r=>r.json());if(r.same&&c)return {...c,now:r.now};API._c=r;return r},
+   do:(a,b)=>fetch('/api/state',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:a,code:CODE,...(b||{})})}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||'Something went wrong');API._c=j;return j})};
   let RAW=null;try{RAW=await API.get()}catch(e){}
   let PJ=RAW&&RAW.projects.find(p=>p.code===CODE&&p.status!=='draft');
   if(!PJ){document.querySelector('main.client').innerHTML='<div class="card" style="grid-column:1/-1;max-width:440px;margin:40px auto;text-align:center;display:grid;gap:12px;justify-items:center;padding:32px 24px"><div style="width:56px;height:56px;border-radius:18px;background:var(--surface);display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 9.5l3-3M7 4.5l1.2-1.2a2.6 2.6 0 0 1 3.7 3.7L10.7 8.2M9 11.5l-1.2 1.2a2.6 2.6 0 0 1-3.7-3.7L5.3 7.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div><h1 style="margin:0;font-size:28px;font-weight:500;letter-spacing:-.045em">This invoice link doesn\'t work</h1><p style="margin:0;color:var(--ink2)">It may have a typo, or the freelancer cancelled it. Ask the person who sent it for a new link. Nothing was charged.</p><code style="font-family:var(--mono);font-size:12px;background:var(--surface);border-radius:10px;padding:8px 12px;overflow-wrap:anywhere">'+location.host+location.pathname+'</code></div>';$('#replay').hidden=true;return}
@@ -497,7 +497,7 @@ input,textarea,select{font-size:max(16px,1em)}
   const FULLT=(PR.name||'').trim()||'Your freelancer',FULL=hx(FULLT),FN=(PR.name||'').trim()?hx(FULLT.split(/\s+/)[0]):'your freelancer';
   const ISW=!!(PR.payout&&PR.payout.mode==='usdt'),PV=ISW?'USDT wallet':((PR.payout&&PR.payout.provider)||'Cleva'),PVA=ISW?'USDT wallet':PV+' account';
   const PINI=FULLT.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
-  if(PR.photo&&/^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*$/.test(PR.photo))AV=PR.photo;else if(PR.custom||FULLT!=='Tobi Adeyemi')AV='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#0F0F0F"/><text x="40" y="51" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="600" text-anchor="middle" fill="#F6F6F3">'+hx(PINI)+'</text></svg>');
+  if(PR.photo&&/^(data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*|\/api\/state\?photo=[a-f0-9]{16})$/.test(PR.photo))AV=PR.photo;else if(PR.custom||FULLT!=='Tobi Adeyemi')AV='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#0F0F0F"/><text x="40" y="51" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="600" text-anchor="middle" fill="#F6F6F3">'+hx(PINI)+'</text></svg>');
   const TZ='Africa/Lagos';
   const fd=ts=>new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:TZ});
   const fds=ts=>new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',timeZone:TZ});
@@ -524,7 +524,9 @@ input,textarea,select{font-size:max(16px,1em)}
   const LAST=D.stages.length-1;
   // swap the sample (Daniel) text for this client everywhere it appears
   (function(){const role=[PR.head,PR.campus].filter(Boolean).join(' · ');
-   const U=[["Tobi's Cleva account",FULLT.split(/\s+/)[0]+"'s "+PVA],['Cleva account',PVA],['Cleva verified','ID verified'],['Tobi Adeyemi',FULLT],['UI/UX Designer · Lagos, Nigeria',role],['behance.net/tobiadeyemi',PR.site||''],['Tobi',FULLT.split(/\s+/)[0]]];
+   // with no name saved yet, say "your freelancer", never "Your's"
+   const NAMED=!!(PR.name||'').trim(),FIRSTT=NAMED?FULLT.split(/\s+/)[0]:'your freelancer';
+   const U=[["Tobi's Cleva account",FIRSTT+"'s "+PVA],['Cleva account',PVA],['Cleva verified','ID verified'],['Tobi Adeyemi',FULLT],['UI/UX Designer · Lagos, Nigeria',role],['behance.net/tobiadeyemi',PR.site||''],['Tobi',FIRSTT]];
    const sw=t=>U.reduce((a,[k,v])=>a.split(k).join(v),t);
    const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('script,style')?2:1});let n;while(n=w.nextNode()){const v=sw(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}
    $$('img.av,.route img').forEach(i=>{i.src=AV;if(i.alt)i.alt=FULLT});const lg=$('.ticket .logo');if(lg)lg.textContent=PINI;
